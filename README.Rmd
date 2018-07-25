@@ -1,0 +1,57 @@
+---
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# cheatR: Catch 'em baddies <img src="doc\cheatRball.png" align="right" height="345" width="300"/>
+
+This is a mini package to help you find cheaters by comparing hand-ins.
+
+## Download and Install
+
+You can install `cheatR` from [github](https://github.com/mattansb/cheatR) with:
+
+```R
+# install.packages("devtools")
+devtools::install_github("mattansb/cheatR")
+```
+
+## Example use
+
+Create a list of files:
+
+```{r}
+my_files <- list.files(path = 'doc', pattern = '.doc', full.names = T)
+my_files
+```
+The first 3 files are different drafts of the same paper, so we would expect them to be similar to each other, and the last is a draft of a different paper, so it should be dissimilar to the first 3.
+
+Then use `cheatR` to fix duplicates.
+
+```{r}
+library(cheatR)
+results <- catch_em(flist = my_files,
+                    n_grams = 10, time_lim = 1) # defults
+```
+
+The input values are:  
+  
+  - `flist` - a list of documents (`.doc`/`.docx`/`.pdf`)
+  - `n_grams` - see [`ngram` package](https://github.com/wrathematics/ngram).
+  - `time_lim` - max time in seconds for each comparison (we found that some corrupt files run forever and crash R, so a time limit might be needed).
+  
+The resulting list contains a matrix with the similarity values between each pair of documents:
+
+```{r}
+knitr::kable(results$results)
+```
+
+## Authors
+
+  - **Mattan S. Ben-Shachar** [aut, cre].
+  - **Almog Simchon** [aut].
