@@ -53,7 +53,8 @@ results <- catch_em(flist = my_files,
 
     ## Reading documents... Done!
     ## Looking for cheaters
-    ## ===========================================================================Busted!
+    ## ===========================================================================
+    ## Busted!
 
 The resulting list contains a matrix with the similarity values between each pair of documents:
 

@@ -73,6 +73,6 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
 
   fin_res <- list(results = res,
                   bad_files = list(bad_files_to_read,bad_files))
-  cat('Busted!')
+  cat('\nBusted!\n')
   return(fin_res)
 }
