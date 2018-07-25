@@ -64,16 +64,16 @@ knitr::kable(results$results)
 
 |                     |  doc/paper1 (1).docx|  doc/paper1 (2).docx|  doc/paper1 (3).docx|  doc/paper2 (1).doc|
 |---------------------|--------------------:|--------------------:|--------------------:|-------------------:|
-| doc/paper1 (1).docx |            1.0000000|                   NA|                   NA|                  NA|
-| doc/paper1 (2).docx |            0.8763864|            1.0000000|                   NA|                  NA|
-| doc/paper1 (3).docx |            0.9310377|            0.8982618|            1.0000000|                  NA|
-| doc/paper2 (1).doc  |            0.0647664|            0.0684318|            0.0910398|                   1|
+| doc/paper1 (1).docx |                1.000|                     |                     |                    |
+| doc/paper1 (2).docx |                0.876|                1.000|                     |                    |
+| doc/paper1 (3).docx |                0.931|                0.898|                1.000|                    |
+| doc/paper2 (1).doc  |                0.065|                0.068|                0.091|                   1|
 
 Limitations?
 ------------
 
-As far as we can tell, this works on any language; we tried both English and Hebrew, with and without setting `Sys.setlocale("LC_ALL", "Hebrew")`.
-Best performance was achieved on `R` version &gt; 3.5.0.
+-   As far as we can tell, this should work on any language; we tried both English and Hebrew, with and without setting `Sys.setlocale("LC_ALL", "Hebrew")`.
+-   Best performance was achieved on `R` version &gt; 3.5.0.
 
 Authors
 -------

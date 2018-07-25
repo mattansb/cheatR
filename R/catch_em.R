@@ -1,10 +1,15 @@
 #' Match cheaters
 #'
 #' @author Mattan S. Ben-Shachar
-#' @param ...
+#' @param flist a list of documents (\code{.doc}/\code{.docx}/\code{.pdf}). A full/relative path must be provided.
+#' @param n_grams see \code{\link{ngram}} package.
+#' @param time_lim max time in seconds for each comparison. Defult is 1 second, had no problem comparing documents with 50K words.
 #'
 #'
-#' @return matrix
+#' @return \item{results}{A correlation-like matrix with each cell indicating the match (0-1) between two of the documents.} \item{bad_files}{\itemize{
+##'  \item{bad_read}{vector of documents that could not be read.}
+##'  \item{bad_ngrams}{matrix of pair-wise comparisons that could not be compared.}
+##' }}
 #' @import purrr
 #' @import textreadr
 #' @import ngram
@@ -72,7 +77,7 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
   res[upper.tri(res)] <- NA
 
   fin_res <- list(results = res,
-                  bad_files = list(bad_files_to_read,bad_files))
+                  bad_files = list(bad_read = bad_files_to_read,bad_ngrams = bad_files))
   cat('\nBusted!\n')
   return(fin_res)
 }

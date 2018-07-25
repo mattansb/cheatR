@@ -4,6 +4,7 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+options(knitr.kable.NA = '', digits = 3)
 ```
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -52,9 +53,9 @@ knitr::kable(results$results)
 ```
 
 ## Limitations?
-
-As far as we can tell, this works on any language; we tried both English and Hebrew, with and without setting `Sys.setlocale("LC_ALL", "Hebrew")`.  
-Best performance was achieved on `R` version > 3.5.0.
+  
+  - As far as we can tell, this should work on any language; we tried both English and Hebrew, with and without setting `Sys.setlocale("LC_ALL", "Hebrew")`.  
+  - Best performance was achieved on `R` version > 3.5.0.
 
 ## Authors
 
