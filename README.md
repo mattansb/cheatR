@@ -69,6 +69,25 @@ knitr::kable(results$results)
 | doc/paper1 (3).docx |                0.931|                0.898|                1.000|                    |
 | doc/paper2 (1).doc  |                0.065|                0.068|                0.091|                   1|
 
+You can also plot the relational graph if you'd like to get a more clear picture of who copied from who.
+
+``` r
+library(tidygraph)
+library(ggraph)
+
+results_graph <- as_tbl_graph(results$results) %>% 
+  activate(what = edges) %>%
+  filter(!is.na(weight))
+
+ggraph(results_graph) +
+  geom_edge_fan(aes(label = round(weight,2)),
+                 angle_calc = 'along',
+                label_dodge = unit(2.5, 'mm')) +
+  geom_node_label(aes(label = name))
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
 Limitations?
 ------------
 

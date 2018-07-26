@@ -1,0 +1,9 @@
+library(tidygraph)
+library(ggraph)
+X <- as_tbl_graph(results$results)
+
+ggraph(X) +
+  geom_node_point() +
+  geom_edge_link(aes(label = round(weight,2)),
+                 angle_calc = 'along',label_dodge = unit(2.5, 'mm'),
+                 end_cap = circle(3, 'mm'), start_cap = circle(3, 'mm'))

@@ -52,25 +52,6 @@ The resulting list contains a matrix with the similarity values between each pai
 knitr::kable(results$results)
 ```
 
-You can also plot the relational graph if you'd like to get a more clear picture of who copied from who.
-
-```{r, warning=FALSE, message=FALSE}
-library(tidygraph)
-library(ggraph)
-
-results_graph <- as_tbl_graph(results$results) %>% 
-  activate(what = edges) %>%
-  filter(!is.na(weight))
-
-ggraph(results_graph) +
-  geom_edge_fan(aes(label = round(weight,2)),
-                 angle_calc = 'along',
-                label_dodge = unit(2.5, 'mm')) +
-  geom_node_label(aes(label = name))
-
-```
-
-
 ## Limitations?
   
   - As far as we can tell, this should work on any language; we tried both English and Hebrew, with and without setting `Sys.setlocale("LC_ALL", "Hebrew")`.  

@@ -1,6 +1,2 @@
-"0","getOption(""digits"")
-"
-"1","[1]"
-"1"," 7"
-"1","
-"
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"0","options(knitr.kable.NA = '', digits = 3)"
