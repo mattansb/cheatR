@@ -3,7 +3,7 @@ output: github_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.path = "doc/")
 options(knitr.kable.NA = '', digits = 3)
 ```
 
@@ -23,6 +23,8 @@ devtools::install_github("mattansb/cheatR")
 ```
 
 ## Example use
+
+### In R console
 
 Create a list of files:
 
@@ -54,7 +56,7 @@ knitr::kable(results$results)
 
 You can also plot the relational graph if you'd like to get a more clear picture of who copied from who.
 
-```{r, warning=FALSE, message=FALSE}
+```{r cheater_graph, warning=FALSE, message=FALSE}
 library(tidygraph)
 library(ggraph)
 
@@ -70,6 +72,15 @@ ggraph(results_graph) +
 
 ```
 
+### Shiny app!
+
+You can also launch a shiny app with:
+
+```R
+cheatR::catch_em_app()
+```
+
+<img src="doc\shiny_app.PNG" align="center"/>
 
 ## Limitations?
   

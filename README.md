@@ -18,6 +18,8 @@ devtools::install_github("mattansb/cheatR")
 Example use
 -----------
 
+### In R console
+
 Create a list of files:
 
 ``` r
@@ -86,7 +88,17 @@ ggraph(results_graph) +
   geom_node_label(aes(label = name))
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](doc/cheater_graph-1.png)
+
+### Shiny app!
+
+You can also launch a shiny app with:
+
+``` r
+cheatR::catch_em_app()
+```
+
+<img src="doc\shiny_app.PNG" align="center"/>
 
 Limitations?
 ------------
