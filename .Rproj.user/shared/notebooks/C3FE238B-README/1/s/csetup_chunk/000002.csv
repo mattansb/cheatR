@@ -1,2 +1,2 @@
-"0","knitr::opts_chunk$set(echo = TRUE)"
+"0","knitr::opts_chunk$set(echo = TRUE, fig.path = ""doc/"")"
 "0","options(knitr.kable.NA = '', digits = 3)"

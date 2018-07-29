@@ -3,7 +3,7 @@
 cheatR: Catch 'em baddies <img src="doc\cheatRball.png" align="right" height="345" width="300"/>
 ================================================================================================
 
-This is a mini package to help you find cheaters by comparing hand-ins.
+This is a mini package to help you find cheaters by comparing hand-ins!
 
 Download and Install
 --------------------
@@ -92,7 +92,7 @@ ggraph(results_graph) +
 
 ### Shiny app!
 
-You can also launch a shiny app with:
+The accompanying `Shiny` app can be found on [shinyapps.io](https://almogsi.shinyapps.io/cheatR/), but can also be run locally with:
 
 ``` r
 cheatR::catch_em_app()
@@ -110,4 +110,4 @@ Authors
 -------
 
 -   **Mattan S. Ben-Shachar** \[aut, cre\].
--   **Almog Simchon** \[aut\].
+-   **Almog Simchon** \[aut, cre\].
