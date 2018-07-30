@@ -6,7 +6,8 @@ Author: Mattan S. Ben-Shachar, Almog Simchon
 Maintainer: Mattan S. Ben Shachar <matanshm@post.bgu.ac.il>
 Description: Compare documents for how similar they are
 Depends: R (>= 3.5.0)
-Imports: purrr, textreadr, ngram, utils, devtools, R.utils, shiny, tidygraph, ggraph
+Imports: purrr, textreadr, ngram, utils, devtools, R.utils, 
+Suggests: shiny, tidygraph, ggraph, stringr, DT
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

@@ -44,8 +44,6 @@ The only function, `catch_em`, takes the following input arguments:
 library(cheatR)
 ```
 
-    ## Loading required package: ngram
-
     ## Catch 'em cheaters!
 
 ``` r
