@@ -11,7 +11,8 @@ options(knitr.kable.NA = '', digits = 3)
 
 # cheatR: Catch 'em baddies <img src="doc\cheatRball.png" align="right" height="345" width="300"/>
 
-This is a mini package to help you find cheaters by comparing hand-ins!
+This is a mini package to help you find cheaters by comparing hand-ins!  
+([Read more](https://mattansb.blogspot.com/2018/07/cheatr-r-package-for-catching-cheaters.html) about circumstances that brought about the development of this package.)
 
 ## Download and Install
 
