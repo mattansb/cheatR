@@ -30,15 +30,34 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
   cat(' Done!\n')
 
   # Test
+  # compare_txt <- function(txt1,txt2) {
+  #   if (is.null(txt1) | is.null(txt1)) {
+  #     return(NULL)
+  #   }
+  #   temp_grams <- ngram(c(txt1,txt2),n = n_grams)
+  #   temp_phrs <- get.phrasetable(temp_grams)
+  #   temp_phrs <- subset(temp_phrs, freq >= 2)
+  #   sum(temp_phrs$prop)
+  # }
   compare_txt <- function(txt1,txt2) {
     if (is.null(txt1) | is.null(txt1)) {
       return(NULL)
     }
-    temp_grams <- ngram(c(txt1,txt2),n = n_grams)
-    temp_phrs <- get.phrasetable(temp_grams)
-    temp_phrs <- subset(temp_phrs, freq >= 2)
-    sum(temp_phrs$prop)
+
+    total_freq <- function(x){
+      x$tot <- sum(x$freq)
+      return(x)
+    }
+
+    txts <- list(txt1,txt2)
+    temp_grams <- map(txts, ngram, n = n_grams)
+    temp_phrs <- map(temp_grams, get.phrasetable)
+    temp_phrs <- map(temp_phrs, total_freq)
+    XX <- dplyr::inner_join(temp_phrs[[1]],temp_phrs[[2]], by = 'ngrams')
+    XX$freq <- 2*apply(cbind(XX$freq.x,XX$freq.y),1,min)
+    sum(XX$freq)/(XX$tot.x[1] + XX$tot.y[1])
   }
+
 
   # pre-alocate
   res <- matrix(NA,
