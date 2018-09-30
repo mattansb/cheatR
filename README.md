@@ -66,9 +66,9 @@ knitr::kable(results$results)
 |                     |  doc/paper1 (1).docx|  doc/paper1 (2).docx|  doc/paper1 (3).docx|  doc/paper2 (1).doc|
 |---------------------|--------------------:|--------------------:|--------------------:|-------------------:|
 | doc/paper1 (1).docx |                1.000|                     |                     |                    |
-| doc/paper1 (2).docx |                0.876|                1.000|                     |                    |
-| doc/paper1 (3).docx |                0.931|                0.898|                1.000|                    |
-| doc/paper2 (1).doc  |                0.065|                0.068|                0.091|                   1|
+| doc/paper1 (2).docx |                0.873|                1.000|                     |                    |
+| doc/paper1 (3).docx |                0.901|                0.878|                1.000|                    |
+| doc/paper2 (1).doc  |                0.002|                0.002|                0.002|                   1|
 
 You can also plot the relational graph if you'd like to get a more clear picture of who copied from who.
 
