@@ -4,7 +4,7 @@ cheatR: Catch 'em baddies <img src="doc\cheatRball.png" align="right" height="34
 ================================================================================================
 
 This is a mini package to help you find cheaters by comparing hand-ins!
-([Read more](https://mattansb.blogspot.com/2018/07/cheatr-r-package-for-catching-cheaters.html) about circumstances that brought about the development of this package.)
+([Read more](https://mattansb.blogspot.com/2018/07/cheatr-r-package-for-catching-cheaters.html) about the circumstances that brought about the development of this package.)
 
 Download and Install
 --------------------
@@ -16,10 +16,10 @@ You can install `cheatR` from [github](https://github.com/mattansb/cheatR) with:
 devtools::install_github("mattansb/cheatR")
 ```
 
-Example use
------------
+Example usage
+-------------
 
-### In R console
+### Scripting
 
 Create a list of files:
 
@@ -81,7 +81,7 @@ results_graph <- as_tbl_graph(results$results) %>%
   filter(!is.na(weight))
 
 ggraph(results_graph) +
-  geom_edge_fan(aes(label = round(weight,2)),
+  geom_edge_fan(aes(label = scales::percent(weight)),
                  angle_calc = 'along',
                 label_dodge = unit(2.5, 'mm')) +
   geom_node_label(aes(label = name))

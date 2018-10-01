@@ -5,6 +5,8 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.path = "doc/")
 options(knitr.kable.NA = '', digits = 3)
+library(ggplot2)
+theme_set(theme_void())
 ```
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -12,7 +14,7 @@ options(knitr.kable.NA = '', digits = 3)
 # cheatR: Catch 'em baddies <img src="doc\cheatRball.png" align="right" height="345" width="300"/>
 
 This is a mini package to help you find cheaters by comparing hand-ins!  
-([Read more](https://mattansb.blogspot.com/2018/07/cheatr-r-package-for-catching-cheaters.html) about circumstances that brought about the development of this package.)
+([Read more](https://mattansb.blogspot.com/2018/07/cheatr-r-package-for-catching-cheaters.html) about the circumstances that brought about the development of this package.)
 
 ## Download and Install
 
@@ -23,9 +25,9 @@ You can install `cheatR` from [github](https://github.com/mattansb/cheatR) with:
 devtools::install_github("mattansb/cheatR")
 ```
 
-## Example use
+## Example usage
 
-### In R console
+### Scripting
 
 Create a list of files:
 
@@ -66,7 +68,7 @@ results_graph <- as_tbl_graph(results$results) %>%
   filter(!is.na(weight))
 
 ggraph(results_graph) +
-  geom_edge_fan(aes(label = round(weight,2)),
+  geom_edge_fan(aes(label = scales::percent(weight)),
                  angle_calc = 'along',
                 label_dodge = unit(2.5, 'mm')) +
   geom_node_label(aes(label = name))
