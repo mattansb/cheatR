@@ -8,7 +8,7 @@ catch_em_app <- function(...) {
 ui_gce <- fluidPage(
 
   # Application title
-  titlePanel("Gotta Catch 'em All"),
+  titlePanel(paste0("Gotta Catch 'em All (v",packageVersion("cheatR"),')')),
 
   # Sidebar with a slider input for number of bins
 
@@ -52,6 +52,7 @@ ui_gce <- fluidPage(
 #' @import ggraph
 #' @import ggplot2
 #' @import stringr
+#' @importFrom scales percent
 server_gce <- function(input, output) {
   first.word <- reactive({
     function(my.string){
@@ -105,11 +106,10 @@ server_gce <- function(input, output) {
              weight <= input$weight_range[2])
 
     ggraph(results_graph) +
-      geom_edge_fan(aes(label = round(weight,2)),
+      geom_edge_fan(aes(label = percent(weight)),
                     angle_calc = 'along',
                     label_dodge = unit(2.5, 'mm')) +
-      geom_node_label(aes(label = name)) + theme_void()
-
-    # plot(input$weight_range[1],input$weight_range[2])
+      geom_node_label(aes(label = name)) +
+      theme_void()
   })
 }
