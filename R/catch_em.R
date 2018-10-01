@@ -11,8 +11,6 @@
 ##'  \item{bad_ngrams}{matrix of pair-wise comparisons that could not be compared.}
 ##' }}
 #' @import purrr
-#' @import textreadr
-#' @import ngram
 #' @import utils
 #' @importFrom R.utils withTimeout
 #' @export
@@ -28,36 +26,6 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
   flist <- flist[!is.na(txt_all)]
   txt_all <- txt_all[!is.na(txt_all)]
   cat(' Done!\n')
-
-  # Test
-  # compare_txt <- function(txt1,txt2) {
-  #   if (is.null(txt1) | is.null(txt1)) {
-  #     return(NULL)
-  #   }
-  #   temp_grams <- ngram(c(txt1,txt2),n = n_grams)
-  #   temp_phrs <- get.phrasetable(temp_grams)
-  #   temp_phrs <- subset(temp_phrs, freq >= 2)
-  #   sum(temp_phrs$prop)
-  # }
-  compare_txt <- function(txt1,txt2) {
-    if (is.null(txt1) | is.null(txt1)) {
-      return(NULL)
-    }
-
-    total_freq <- function(x){
-      x$tot <- sum(x$freq)
-      return(x)
-    }
-
-    txts <- list(txt1,txt2)
-    temp_grams <- map(txts, ngram, n = n_grams)
-    temp_phrs <- map(temp_grams, get.phrasetable)
-    temp_phrs <- map(temp_phrs, total_freq)
-    XX <- dplyr::inner_join(temp_phrs[[1]],temp_phrs[[2]], by = 'ngrams')
-    XX$freq <- 2*apply(cbind(XX$freq.x,XX$freq.y),1,min)
-    sum(XX$freq)/(XX$tot.x[1] + XX$tot.y[1])
-  }
-
 
   # pre-alocate
   res <- matrix(NA,
@@ -75,7 +43,7 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
 
       if(is.na(res[j,i])){
         results <- withTimeout(
-          {compare_txt(txt_all[i],txt_all[j])},
+          {compare_txt(txt_all[i],txt_all[j], n_grams = n_grams)},
           timeout = time_lim,
           onTimeout = "silent"
         )
@@ -99,4 +67,36 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
                   bad_files = list(bad_read = bad_files_to_read,bad_ngrams = bad_files))
   cat('\nBusted!\n')
   return(fin_res)
+}
+
+#' Match cheaters
+#'
+#' @author Mattan S. Ben-Shachar
+#' @param txt1 a char vector of length 1 to compare to `txt2`
+#' @param txt2 a char vector of length 1 to compare to `txt1`
+#'
+#'
+#' @return The percent (0-1) of overlap between the texts
+#'
+#' @import purrr
+#' @import textreadr
+#' @import ngram
+#' @importFrom dplyr inner_join
+compare_txt <- function(txt1,txt2, n_grams = 10) {
+  if (is.null(txt1) | is.null(txt2)) {
+    return(NULL)
+  }
+
+  total_freq <- function(x){
+    x$tot <- sum(x$freq)
+    return(x)
+  }
+
+  txts <- list(txt1,txt2)
+  temp_grams <- map(txts, ngram, n = n_grams)
+  temp_phrs <- map(temp_grams, get.phrasetable)
+  temp_phrs <- map(temp_phrs, total_freq)
+  XX <- inner_join(temp_phrs[[1]],temp_phrs[[2]], by = 'ngrams')
+  XX$freq <- 2*apply(cbind(XX$freq.x,XX$freq.y),1,min)
+  sum(XX$freq)/(XX$tot.x[1] + XX$tot.y[1])
 }
