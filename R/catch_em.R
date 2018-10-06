@@ -37,7 +37,7 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
   bad_files <- matrix(character(),ncol = 2)
 
   cat('Looking for cheaters\n')
-  pb <- txtProgressBar(min = 0, max = length(flist))
+  pb <- txtProgressBar(min = 0, max = max(c(length(flist),1)))
   for (i in seq_along(flist)) {
     for (j in seq_along(flist)) {
 
