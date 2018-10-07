@@ -14,7 +14,6 @@
 #' @import utils
 #' @importFrom R.utils withTimeout
 #' @export
-
 catch_em <- function(flist, n_grams = 10, time_lim = 1L){
 
   # load txt and mark bad files
@@ -65,6 +64,7 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
 
   fin_res <- list(results = res,
                   bad_files = list(bad_read = bad_files_to_read,bad_ngrams = bad_files))
+  class(fin_res) <- c('chtrs','list')
   cat('\nBusted!\n')
   return(fin_res)
 }

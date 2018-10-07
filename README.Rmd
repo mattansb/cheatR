@@ -54,7 +54,7 @@ results <- catch_em(flist = my_files,
 The resulting list contains a matrix with the similarity values between each pair of documents:
 
 ```{r}
-knitr::kable(results$results)
+knitr::kable(summary(results))
 ```
 
 You can also plot the relational graph if you'd like to get a more clear picture of who copied from who.

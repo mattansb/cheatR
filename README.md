@@ -60,7 +60,7 @@ results <- catch_em(flist = my_files,
 The resulting list contains a matrix with the similarity values between each pair of documents:
 
 ``` r
-knitr::kable(results$results)
+knitr::kable(summary(results))
 ```
 
 |                     |  doc/paper1 (1).docx|  doc/paper1 (2).docx|  doc/paper1 (3).docx|  doc/paper2 (1).doc|
