@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1542298015352.000,
+    "dirty" : false,
+    "encoding" : "ISO-8859-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "3DE14602",
+    "lastKnownWriteTime" : 1542298066,
+    "last_content_update" : 1542298066859,
+    "path" : "~/R/cheatR/R/catch_em.R",
+    "project_path" : "R/catch_em.R",
+    "properties" : {
+        "cursorPosition" : "2,0",
+        "docOutlineVisible" : "1",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
