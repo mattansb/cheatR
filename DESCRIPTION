@@ -1,14 +1,14 @@
 Package: cheatR
 Type: Package
 Title: Catch cheaters!
-Version: 1.0.0-5
+Version: 1.0.0-6
 Author: Mattan S. Ben-Shachar, Almog Simchon
 Maintainer: Mattan S. Ben Shachar <matanshm@post.bgu.ac.il>
 Description: Compare documents for how similar they are
 Depends: R (>= 3.5.0)
-Imports: purrr, textreadr, ngram, utils, devtools, R.utils, dplyr
-Suggests: shiny, tidygraph, ggraph, stringr, DT
+Imports: purrr, textreadr, ngram, utils, devtools, R.utils, dplyr, shiny, ggplot2, scales, tidygraph, ggraph, stringr, DT
+Suggests: 
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
