@@ -1,6 +1,10 @@
+#' Run \code{catch_em} with \code{shiny}
+#'
+#' @author Almog Simchon
+#'
 #' @import shiny
 #' @export
-catch_em_app <- function(...) {
+catch_em_app <- function() {
   # Run the application
   shinyApp(ui = ui_gce, server = server_gce)
 }

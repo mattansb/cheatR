@@ -74,6 +74,7 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
 #' @author Mattan S. Ben-Shachar
 #' @param txt1 a char vector of length 1 to compare to `txt2`
 #' @param txt2 a char vector of length 1 to compare to `txt1`
+#' @param n_grams see \code{\link{ngram}} package.
 #'
 #'
 #' @return The percent (0-1) of overlap between the texts

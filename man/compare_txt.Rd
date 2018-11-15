@@ -10,6 +10,8 @@ compare_txt(txt1, txt2, n_grams = 10)
 \item{txt1}{a char vector of length 1 to compare to `txt2`}
 
 \item{txt2}{a char vector of length 1 to compare to `txt1`}
+
+\item{n_grams}{see \code{\link{ngram}} package.}
 }
 \value{
 The percent (0-1) of overlap between the texts

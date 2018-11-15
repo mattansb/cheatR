@@ -4,10 +4,12 @@
 \alias{print.chtrs}
 \title{print cheatrs}
 \usage{
-print.chtrs(x)
+print.chtrs(x, ...)
 }
 \arguments{
 \item{x}{output of \code{catch_em()}.}
+
+\item{...}{not used}
 }
 \description{
 print cheatrs

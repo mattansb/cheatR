@@ -2,8 +2,9 @@
 #'
 #' @author Mattan S. Ben-Shachar
 #' @param x output of \code{catch_em()}.
+#' @param ... not used
 #' @export
-print.chtrs <- function(x) {
+print.chtrs <- function(x,...) {
   if ("scales" %in% rownames(installed.packages())) {
     x$results[] <- scales::percent(x$results[])
     x$results[upper.tri(x$results)] <- ''
@@ -30,16 +31,16 @@ print.chtrs <- function(x) {
   invisible(x)
 }
 
-#' print cheatrs
+#' summarise cheatrs
 #'
 #' @author Mattan S. Ben-Shachar
 #' @param x output of \code{catch_em()}.
 #' @param bad_files logical. Instead of the result matrix, should return instead the list of bad files (that did not compare / load)? default \code{FALSE}
 #' @export
-summary.chtrs <- function(x, bad_files = F) {
+summary.chtrs <- function(object, bad_files = F) {
   if (bad_files) {
-    x$bad_files
+    object$bad_files
   } else {
-    x$results
+    object$results
   }
 }
