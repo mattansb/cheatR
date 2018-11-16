@@ -52,11 +52,7 @@ ui_gce <- fluidPage(
   )
 )
 
-#' @import tidygraph
-#' @import ggraph
 #' @import ggplot2
-#' @import stringr
-#' @importFrom scales percent
 server_gce <- function(input, output) {
   first.word <- reactive({
     function(my.string){
@@ -70,32 +66,28 @@ server_gce <- function(input, output) {
 
     res <- catch_em(input$input_doc_list$datapath, n_grams = input$n_grams)
 
-    alias_docs <- sapply(input$input_doc_list$name, first.word())
-    alias_docs <- alias_docs[input$input_doc_list$datapath %in% colnames(res$results)]
-
-    colnames(res$results) <- rownames(res$results) <- alias_docs
+    colnames(res$results) <- rownames(res$results) <- basename(input$input_doc_list$name)
     return(res)
   })
 
   output$output_doc_list <- renderTable({
-    if (is.na(catch_results()))
+    if (is.null(input$input_doc_list))
       return(data.frame())
 
-    data.frame(ID = sapply(input$input_doc_list$name, first.word()),
-               Document = input$input_doc_list$name)
-
+    data.frame(Document = input$input_doc_list$name)
   })
 
   output$output_doc_matrix <- DT::renderDataTable({
     if (is.na(catch_results()))
       return(data.frame())
 
-    for_mat <- catch_results()$results
+    for_mat <- summary(catch_results())
 
     round(for_mat,3)
-  }, rownames = TRUE, extensions = 'Buttons',
-  options = list(dom = 'Bfrtip',
-                 buttons = c('copy', 'csv', 'excel', 'pdf', 'print'))
+  },
+  rownames = TRUE, extensions = 'Buttons',
+  options  = list(dom = 'Bfrtip',
+                  buttons = c('copy', 'csv', 'excel', 'pdf', 'print'))
   )
 
 
@@ -103,17 +95,8 @@ server_gce <- function(input, output) {
     if (is.na(catch_results()))
       return(ggplot() + theme_void())
 
-    results_graph <- as_tbl_graph(catch_results()$results) %>%
-      activate(what = edges) %>%
-      filter(!is.na(weight),
-             weight >= input$weight_range[1],
-             weight <= input$weight_range[2])
-
-    ggraph(results_graph) +
-      geom_edge_fan(aes(label = percent(weight)),
-                    angle_calc = 'along',
-                    label_dodge = unit(2.5, 'mm')) +
-      geom_node_label(aes(label = name)) +
+    graph_em(catch_results(),
+             weight_range = input$weight_range) +
       theme_void()
   })
 }
