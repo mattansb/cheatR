@@ -15,8 +15,8 @@ catch_em(flist, n_grams = 10, time_lim = 1L)
 }
 \value{
 \item{results}{A correlation-like matrix with each cell indicating the match (0-1) between two of the documents.} \item{bad_files}{\itemize{
- \item{bad_read}{vector of documents that could not be read.}
- \item{bad_ngrams}{matrix of pair-wise comparisons that could not be compared.}
+ \item{bad_read}{ vector of documents that could not be read.}
+ \item{bad_ngrams}{ matrix of pair-wise comparisons that could not be compared.}
 }}
 }
 \description{
