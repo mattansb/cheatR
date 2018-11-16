@@ -7,8 +7,8 @@
 #'
 #'
 #' @return \item{results}{A correlation-like matrix with each cell indicating the match (0-1) between two of the documents.} \item{bad_files}{\itemize{
-##'  \item{bad_read}{vector of documents that could not be read.}
-##'  \item{bad_ngrams}{matrix of pair-wise comparisons that could not be compared.}
+##'  \item{bad_read}{ vector of documents that could not be read.}
+##'  \item{bad_ngrams}{ matrix of pair-wise comparisons that could not be compared.}
 ##' }}
 #' @import purrr
 #' @import utils
@@ -31,7 +31,7 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
                 nrow = length(flist),
                 ncol = length(flist))
   diag(res) <- 1
-  colnames(res) <- rownames(res) <- flist
+  colnames(res) <- rownames(res) <- basename(flist)
 
   bad_files <- matrix(character(),ncol = 2)
 
