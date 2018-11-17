@@ -1,0 +1,53 @@
+---
+title: "Using `cheatR`"
+author: "Mattan S. Ben-Shachar"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+### Scripting
+
+Create a list of files:
+
+```{r}
+my_files <- list.files(path = '../doc', pattern = '.doc', full.names = T)
+my_files
+```
+The first 3 documents are different drafts of the same paper, so we would expect them to be similar to each other. The last document is a draft of a different paper, so it should be dissimilar to the first 3. **All files are about 45K words long.**
+
+Now we can use `cheatR` to find duplicates.  
+
+The only function, `catch_em`, takes the following input arguments:  
+  
+  - `flist` - a list of documents (`.doc`/`.docx`/`.pdf`). A full/relative path must be provided.
+  - `n_grams` - see [`ngram` package](https://github.com/wrathematics/ngram).
+  - `time_lim` - max time in seconds for each comparison (we found that some corrupt files run forever and crash R, so a time limit might be needed).
+
+```{r}
+library(cheatR)
+results <- catch_em(flist = my_files,
+                    n_grams = 10, time_lim = 1) # defults
+```
+
+The resulting list contains a matrix with the similarity values between each pair of documents:
+
+```{r}
+knitr::kable(summary(results))
+```
+
+You can also plot the relational graph if you'd like to get a more clear picture of who copied from who.
+
+```{r cheater_graph}
+graph_em(results, weight_range = c(0.7, 1))
+```
