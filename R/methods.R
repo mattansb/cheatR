@@ -36,7 +36,7 @@ print.chtrs <- function(x,...) {
 #' @param x output of \code{catch_em()}.
 #' @param bad_files logical. Instead of the result matrix, should return instead the list of bad files (that did not compare / load)? default \code{FALSE}
 #' @export
-summary.chtrs <- function(object, bad_files = F) {
+summary.chtrs <- function(object, bad_files = FALSE) {
   if (bad_files) {
     object$bad_files
   } else {
@@ -47,6 +47,7 @@ summary.chtrs <- function(object, bad_files = F) {
 #' plot cheatrs
 #'
 #' @author Mattan S. Ben-Shachar
+#'
 #' @param object output of \code{catch_em()}.
 #' @param weight_range range of edge values to plot
 #' @param ... not used
@@ -57,7 +58,7 @@ summary.chtrs <- function(object, bad_files = F) {
 #' @importFrom scales percent
 #' @importFrom magrittr %>%
 #' @export
-graph_em <- function(object,weight_range = c(.7,1),...){
+plot.chtrs <- function(object,weight_range = c(.7,1),...){
   results_graph <- summary(object) %>%
     as_tbl_graph() %>%
     activate(what = edges) %>%
@@ -71,6 +72,10 @@ graph_em <- function(object,weight_range = c(.7,1),...){
                   label_dodge = unit(2.5, 'mm')) +
     geom_node_label(aes(label = name))
 }
+
+#' @export
+#' @rdname plot.chtrs
+graph_em <- plot.chtrs
 
 #' plot histogram of similarity scores
 #'

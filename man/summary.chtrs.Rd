@@ -4,7 +4,7 @@
 \alias{summary.chtrs}
 \title{summarise cheatrs}
 \usage{
-\method{summary}{chtrs}(object, bad_files = F)
+\method{summary}{chtrs}(object, bad_files = FALSE)
 }
 \arguments{
 \item{bad_files}{logical. Instead of the result matrix, should return instead the list of bad files (that did not compare / load)? default \code{FALSE}}

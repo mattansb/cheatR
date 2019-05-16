@@ -49,5 +49,5 @@ knitr::kable(summary(results))
 You can also plot the relational graph if you'd like to get a more clear picture of who copied from who.
 
 ```{r cheater_graph}
-graph_em(results, weight_range = c(0.7, 1))
+plot(results, weight_range = c(0.7, 1))
 ```
