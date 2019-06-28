@@ -4,7 +4,7 @@ cheatR: Catch 'em baddies <img src="doc\cheatRball.png" align="right" height="34
 ================================================================================================
 
 This is a mini package to help you find cheaters by comparing hand-ins!
-([Read more](https://mattansb.blogspot.com/2018/07/cheatr-r-package-for-catching-cheaters.html) about the circumstances that brought about the development of this package.)
+([Read more](https://mattansb.github.io/blog/posts/2018-07-29-cheatr/) about the circumstances that brought about the development of this package.)
 
 Download and Install
 --------------------
