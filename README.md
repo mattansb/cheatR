@@ -31,8 +31,8 @@ Create a list of files:
 ``` r
 my_files <- list.files(path = '../doc', pattern = '.doc', full.names = T)
 my_files
-#> [1] "../doc/paper1 (1).docx" "../doc/paper1 (2).docx"
-#> [3] "../doc/paper1 (3).docx" "../doc/paper2 (1).doc"
+#> [1] "../doc/paper1 (1).docx" "../doc/paper1 (2).docx" "../doc/paper1 (3).docx"
+#> [4] "../doc/paper2 (1).doc"
 ```
 
 The first 3 documents are different drafts of the same paper, so we
@@ -56,15 +56,12 @@ The only function, `catch_em`, takes the following input arguments:
 
 ``` r
 library(cheatR)
-#> Registered S3 method overwritten by 'R.oo':
-#>   method        from       
-#>   throw.default R.methodsS3
 #> Catch 'em cheaters!
 results <- catch_em(flist = my_files,
                     n_grams = 10, time_lim = 1) # defults
 #> Reading documents... Done!
 #> Looking for cheaters
-#> ===========================================================================
+#> ================================================================================
 #> Busted!
 ```
 
@@ -72,7 +69,7 @@ The resulting list contains a matrix with the similarity values between
 each pair of documents:
 
 ``` r
-knitr::kable(summary(results))
+knitr::kable(results)
 ```
 
 |                 | paper1 (1).docx | paper1 (2).docx | paper1 (3).docx | paper2 (1).doc |
@@ -86,8 +83,15 @@ You can also plot the relational graph if you’d like to get a more clear
 picture of who copied from who.
 
 ``` r
-plot(results, weight_range = c(0.7, 1))
-#> Using `nicely` as default layout
+plot(results, weight_range = c(0.7, 1), remove_lonely = FALSE)
+#> Loading required package: tidygraph
+#> 
+#> Attaching package: 'tidygraph'
+#> The following object is masked from 'package:stats':
+#> 
+#>     filter
+#> Loading required package: ggraph
+#> Using `stress` as default layout
 ```
 
 ![](doc/cheater_graph-1.png)<!-- -->
