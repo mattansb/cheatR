@@ -14,6 +14,7 @@
 #' @import purrr
 #' @import utils
 #' @importFrom R.utils withTimeout
+#' @importFrom textreadr read_document
 #' @export
 catch_em <- function(flist, n_grams = 10, time_lim = 1L){
   if (length(flist)<2) {
@@ -23,11 +24,15 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
   # load txt and mark bad files
   cat('Reading documents...')
   safe_read <- safely(read_document)
-  txt_all <- map(flist,  ~ safe_read(.x, combine = T)$result)
+  txt_all <- map(flist,  ~ safe_read(.x, combine = TRUE)$result)
   txt_all <- flatten_chr(map_if(txt_all, is_empty, ~ NA_character_))
   bad_files_to_read <- flist[is.na(txt_all)]
   flist <- flist[!is.na(txt_all)]
   txt_all <- txt_all[!is.na(txt_all)]
+
+  if (length(txt_all)==0) {
+    stop("\nCouldn't read any files:\n\n", paste0(bad_files_to_read, collapse = ",\t"))
+  }
   cat(' Done!\n')
 
   # pre-alocate
@@ -97,6 +102,8 @@ compare_txt <- function(txt1,txt2, n_grams = 10) {
   temp_phrs <- map(temp_grams, get.phrasetable)
   temp_phrs <- map(temp_phrs, total_freq)
   XX <- merge(temp_phrs[[1]], temp_phrs[[2]], by = 'ngrams')
-  XX$freq <- 2 * apply(cbind(XX$freq.x, XX$freq.y), 1, min)
+
+  if (nrow(XX)==0) return(0)
+  XX$freq <- 2 * pmin(XX$freq.x, XX$freq.y, na.rm = TRUE)
   sum(XX$freq) / (XX$tot.x[1] + XX$tot.y[1])
 }
