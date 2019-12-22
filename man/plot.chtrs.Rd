@@ -3,21 +3,23 @@
 \name{plot.chtrs}
 \alias{plot.chtrs}
 \alias{graph_em}
-\title{plot cheatrs}
+\title{Plot Cheatrs}
 \usage{
-\method{plot}{chtrs}(object, weight_range = c(0.7, 1), ...)
+\method{plot}{chtrs}(object, weight_range = c(0.4, 1), remove_lonely = TRUE, ...)
 
-graph_em(object, weight_range = c(0.7, 1), ...)
+graph_em(object, weight_range = c(0.4, 1), remove_lonely = TRUE, ...)
 }
 \arguments{
 \item{object}{output of \code{catch_em()}.}
 
 \item{weight_range}{range of edge values to plot}
 
-\item{...}{not used}
+\item{remove_lonely}{should lonely nodes (with no edges) be removed from the graph?}
+
+\item{...}{passed to \code{ggraph}.}
 }
 \description{
-plot cheatrs
+Plot Cheatrs
 }
 \author{
 Mattan S. Ben-Shachar

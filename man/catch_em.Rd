@@ -12,6 +12,8 @@ catch_em(flist, n_grams = 10, time_lim = 1L)
 \item{n_grams}{see \code{\link{ngram}} package.}
 
 \item{time_lim}{max time in seconds for each comparison. Defult is 1 second, had no problem comparing documents with 50K words.}
+
+\item{diag}{What value should the diagonal (the score between an item an itself) take.}
 }
 \value{
 \item{results}{A correlation-like matrix with each cell indicating the match (0-1) between two of the documents.} \item{bad_files}{\itemize{

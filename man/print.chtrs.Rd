@@ -2,7 +2,7 @@
 % Please edit documentation in R/methods.R
 \name{print.chtrs}
 \alias{print.chtrs}
-\title{print cheatrs}
+\title{Print Cheatrs}
 \usage{
 print.chtrs(x, ...)
 }
@@ -12,7 +12,7 @@ print.chtrs(x, ...)
 \item{...}{not used}
 }
 \description{
-print cheatrs
+Print Cheatrs
 }
 \author{
 Mattan S. Ben-Shachar

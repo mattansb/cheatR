@@ -2,7 +2,7 @@
 % Please edit documentation in R/methods.R
 \name{summary.chtrs}
 \alias{summary.chtrs}
-\title{summarise cheatrs}
+\title{Summarise Cheatrs}
 \usage{
 \method{summary}{chtrs}(object, bad_files = FALSE)
 }
@@ -12,7 +12,7 @@
 \item{x}{output of \code{catch_em()}.}
 }
 \description{
-summarise cheatrs
+Summarise Cheatrs
 }
 \author{
 Mattan S. Ben-Shachar
