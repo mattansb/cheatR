@@ -8,6 +8,7 @@ This doc details user-facing changes only.
 
 - `catch_em()` now returns a matrix, and not a list.
 - Plotting now removes lonely nodes (nodes that are not related to any other node). This can be changed by setting `remove_lonely = FALSE`.
+- New `compare_txt()` for comparing pairs of texts.
 
 ## Version 1.0.0-5
 

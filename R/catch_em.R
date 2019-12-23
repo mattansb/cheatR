@@ -87,7 +87,10 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L){
 #' @import textreadr
 #' @import ngram
 #' @export
-compare_txt <- function(txt1,txt2, n_grams = 10) {
+compare_txt <- function(txt1,txt2, n_grams = 10,
+                        across = c("both","txt1","txt2")) {
+  across <- match.arg(across)
+
   if (is.null(txt1) | is.null(txt2)) {
     return(NULL)
   }
@@ -102,8 +105,12 @@ compare_txt <- function(txt1,txt2, n_grams = 10) {
   temp_phrs <- map(temp_grams, get.phrasetable)
   temp_phrs <- map(temp_phrs, total_freq)
   XX <- merge(temp_phrs[[1]], temp_phrs[[2]], by = 'ngrams')
-
   if (nrow(XX)==0) return(0)
   XX$freq <- 2 * pmin(XX$freq.x, XX$freq.y, na.rm = TRUE)
-  sum(XX$freq) / (XX$tot.x[1] + XX$tot.y[1])
+
+  switch (across,
+    both = sum(XX$freq) / (XX$tot.x[1] + XX$tot.y[1]),
+    txt1 = sum(XX$freq.x) / XX$tot.x[1],
+    txt2 = sum(XX$freq.y) / XX$tot.y[1]
+  )
 }

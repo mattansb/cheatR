@@ -81,12 +81,10 @@ server_gce <- function(input, output) {
   })
 
   output$output_doc_matrix <- DT::renderDataTable({
-    if (is.na(catch_results()))
+    if (is.na(catch_results()[1]))
       return(data.frame())
 
-    for_mat <- summary(catch_results())
-
-    round(for_mat,3)
+    round(catch_results(),3)
   },
   rownames = TRUE,
   extensions = 'Buttons',
