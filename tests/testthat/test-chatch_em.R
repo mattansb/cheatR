@@ -3,6 +3,7 @@ context("chtrs")
 test_that("chtrs", {
   library(cheatR)
   my_files <- list.files(path = '../../doc', pattern = '.doc', full.names = T)
+  # my_files <- list.files(path = 'doc', pattern = '.doc', full.names = T)
   my_files
 
   set.seed(140)

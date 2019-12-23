@@ -2,14 +2,15 @@
 #'
 #' @author Mattan S. Ben-Shachar
 #' @param x output of \code{catch_em()}.
+#' @param digits Number of digits to round the percentage to.
 #' @param ... not used
 #'
 #' @export
-print.chtrs <- function(x,...) {
+print.chtrs <- function(x, digits = 0, ...) {
   x_ <- x
 
   add_na <- is.na(x[])
-  x[] <- paste0(100 * round(x[], 2), "%")
+  x[] <- paste0(100 * round(x[], 2 + digits), "%")
   x[add_na] <- NA
   x[upper.tri(x)] <- ''
 
@@ -41,8 +42,10 @@ print.chtrs <- function(x,...) {
 #' @export
 summary.chtrs <- function(object, bad_files = FALSE) {
   if (bad_files) {
-    list(bad_read = attr(object, "bad_read"),
-         bad_ngrams = attr(object, "bad_ngrams"))
+    list(
+      bad_read = attr(object, "bad_read"),
+      bad_ngrams = attr(object, "bad_ngrams")
+    )
   } else {
     object
   }
@@ -56,12 +59,16 @@ summary.chtrs <- function(object, bad_files = FALSE) {
 #' @param weight_range range of edge values to plot
 #' @param ... passed to \code{ggraph}.
 #' @param remove_lonely should lonely nodes (with no edges) be removed from the graph?
+#' @param digits Number of digits to round the percentage to.
 #'
 #' @import tidygraph
 #' @import ggraph
 #' @import ggplot2
 #' @export
-plot.chtrs <- function(object,weight_range = c(.4,1), remove_lonely = TRUE, ...){
+plot.chtrs <- function(object,
+                       weight_range = c(.4,1),
+                       remove_lonely = TRUE,
+                       digits = 0, ...){
   if(!require(tidygraph))
     stop("This function requares 'tidygraph' to work. Please install it.")
   if (!require(ggraph))
@@ -91,7 +98,7 @@ plot.chtrs <- function(object,weight_range = c(.4,1), remove_lonely = TRUE, ...)
   }
 
   ggraph(results_graph, ...) +
-    geom_edge_fan(aes(label = paste0(100 * round(weight, 2), "%")),
+    geom_edge_fan(aes(label = paste0(100 * round(weight, 2 + digits), "%")),
                   angle_calc = 'along',
                   label_dodge = unit(2.5, 'mm')) +
     geom_node_label(aes(label = name))
@@ -105,11 +112,19 @@ graph_em <- plot.chtrs
 #'
 #' @author Mattan S. Ben-Shachar
 #' @param object output of \code{catch_em()}.
-#' @param ... passed to \code{hist}
+#' @param ... passed to \code{hist} or \code{geom_histogram}.
+#'
 #' @export
 hist.chtrs <- function(object,...) {
-  hist(summary(object)[],
-       main = 'Histogram of similarity scores',
-       xlab = 'Similarity',
-       ...)
+  if (require(ggplot2)) {
+    ggplot() +
+      geom_histogram(aes(x = as.vector(object)), ...) +
+      labs(main = 'Histogram of similarity scores',
+           x = 'Similarity')
+  } else {
+    hist(as.vector(object),
+         main = 'Histogram of similarity scores',
+         xlab = 'Similarity',
+         ...)
+  }
 }
