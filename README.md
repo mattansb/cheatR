@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cheatR: Catch ’em baddies <img src="doc\cheatRball.png" align="right" height="345" width="300"/>
+# cheatR: Catch ’em baddies <img src="man\figures\cheatRball.png" align="right" height="345" width="300"/>
 
 This is a mini package to help you find cheaters by comparing
 hand-ins\!  
@@ -11,6 +11,8 @@ about the circumstances that brought about the development of this
 package.)
 
 ## Download and Install
+
+[![CRAN](http://www.r-pkg.org/badges/version/cheatR)](https://cran.r-project.org/package=cheatR)
 
 You can install `cheatR` from
 [github](https://github.com/mattansb/cheatR) with:
@@ -29,10 +31,10 @@ devtools::install_github("mattansb/cheatR")
 Create a list of files:
 
 ``` r
-my_files <- list.files(path = '../doc', pattern = '.doc', full.names = T)
+my_files <- list.files(path = '../man/files/', pattern = '.doc', full.names = TRUE)
 my_files
-#> [1] "../doc/paper1 (1).docx" "../doc/paper1 (2).docx" "../doc/paper1 (3).docx"
-#> [4] "../doc/paper2 (1).doc"
+#> [1] "../man/files/paper1 (1).docx" "../man/files/paper1 (2).docx"
+#> [3] "../man/files/paper1 (3).docx" "../man/files/paper2 (1).docx"
 ```
 
 The first 3 documents are different drafts of the same paper, so we
@@ -58,7 +60,7 @@ The only function, `catch_em`, takes the following input arguments:
 library(cheatR)
 #> Catch 'em cheaters!
 results <- catch_em(flist = my_files,
-                    n_grams = 10, time_lim = 1) # defults
+                    n_grams = 10, time_lim = 1) # defaults
 #> Reading documents... Done!
 #> Looking for cheaters
 #> ================================================================================
@@ -69,32 +71,28 @@ The resulting list contains a matrix with the similarity values between
 each pair of documents:
 
 ``` r
-knitr::kable(results)
+results
+#>                 paper1 (1).docx paper1 (2).docx paper1 (3).docx paper2 (1).docx
+#> paper1 (1).docx            100%                                                
+#> paper1 (2).docx             87%            100%                                
+#> paper1 (3).docx             90%             88%            100%                
+#> paper2 (1).docx              0%              0%              0%            100%
+#> 
+#> All files read successfully.
+#> All files compared successfully.
 ```
-
-|                 | paper1 (1).docx | paper1 (2).docx | paper1 (3).docx | paper2 (1).doc |
-| --------------- | --------------: | --------------: | --------------: | -------------: |
-| paper1 (1).docx |           1.000 |                 |                 |                |
-| paper1 (2).docx |           0.873 |           1.000 |                 |                |
-| paper1 (3).docx |           0.901 |           0.878 |           1.000 |                |
-| paper2 (1).doc  |           0.002 |           0.002 |           0.002 |              1 |
 
 You can also plot the relational graph if you’d like to get a more clear
 picture of who copied from who.
 
 ``` r
 plot(results, weight_range = c(0.7, 1), remove_lonely = FALSE)
-#> Loading required package: tidygraph
-#> 
-#> Attaching package: 'tidygraph'
-#> The following object is masked from 'package:stats':
-#> 
-#>     filter
-#> Loading required package: ggraph
+#> Loading required namespace: tidygraph
+#> Loading required namespace: ggraph
 #> Using `stress` as default layout
 ```
 
-![](doc/cheater_graph-1.png)<!-- -->
+![](man/figures/cheater_graph-1.png)<!-- -->
 
 ### Shiny app\!
 
@@ -106,7 +104,7 @@ run locally with:
 cheatR::catch_em_app()
 ```
 
-<img src="doc\shiny_app.PNG" align="center"/>
+<img src="man\figures\shiny_app.PNG" align="center"/>
 
 ## Limitations?
 

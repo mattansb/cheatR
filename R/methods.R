@@ -1,10 +1,3 @@
-#' Print Cheatrs
-#'
-#' @author Mattan S. Ben-Shachar
-#' @param x output of \code{catch_em()}.
-#' @param digits Number of digits to round the percentage to.
-#' @param ... not used
-#'
 #' @export
 print.chtrs <- function(x, digits = 0, ...) {
   x_ <- x
@@ -16,6 +9,10 @@ print.chtrs <- function(x, digits = 0, ...) {
 
   bad_read <- length(attr(x,"bad_read"))
   bad_ngrams <- nrow(attr(x,"bad_ngrams"))
+
+  x <- unclass(x)
+  attr(x, "bad_read") <- NULL
+  attr(x, "bad_ngrams") <- NULL
 
   print(unclass(x), quote = F, right = T)
   if (bad_read > 0) {
@@ -36,11 +33,13 @@ print.chtrs <- function(x, digits = 0, ...) {
 #' Summarise Cheatrs
 #'
 #' @author Mattan S. Ben-Shachar
-#' @param x output of \code{catch_em()}.
-#' @param bad_files logical. Instead of the result matrix, should return instead the list of bad files (that did not compare / load)? default \code{FALSE}
+#' @param object output of [catch_em()].
+#' @param bad_files logical. Instead of the result matrix, should return instead
+#'   the list of bad files (that did not compare / load)? Defaults to `FALSE`.
+#' @param ... Not used.
 #'
 #' @export
-summary.chtrs <- function(object, bad_files = FALSE) {
+summary.chtrs <- function(object, bad_files = FALSE, ...) {
   if (bad_files) {
     list(
       bad_read = attr(object, "bad_read"),
@@ -51,78 +50,85 @@ summary.chtrs <- function(object, bad_files = FALSE) {
   }
 }
 
-#' Plot Cheatrs
+#' Plot cheatrs / histogram of similarity scores
+#'
+#' `plot` requires `ggraph` and `ggplot2` to work.
 #'
 #' @author Mattan S. Ben-Shachar
 #'
-#' @param object output of \code{catch_em()}.
+#' @param x output of [catch_em()].
 #' @param weight_range range of edge values to plot
-#' @param ... passed to \code{ggraph}.
-#' @param remove_lonely should lonely nodes (with no edges) be removed from the graph?
+#' @param ... passed to [ggraph::ggraph()], [ggplot2::geom_histogram] or
+#'   [hist()].
+#' @param remove_lonely should lonely nodes (with no edges) be removed from the
+#'   graph?
 #' @param digits Number of digits to round the percentage to.
 #'
-#' @import tidygraph
-#' @import ggraph
-#' @import ggplot2
 #' @export
-plot.chtrs <- function(object,
+plot.chtrs <- function(x,
                        weight_range = c(.4,1),
                        remove_lonely = TRUE,
                        digits = 0, ...){
-  if(!require(tidygraph))
+  if(!requireNamespace("tidygraph"))
     stop("This function requares 'tidygraph' to work. Please install it.")
-  if (!require(ggraph))
+  if (!requireNamespace("ggraph"))
     stop("This function requares 'ggraph' to work. Please install it.")
-  if (!require(ggplot2))
+  if (!requireNamespace("ggplot2"))
     stop("This function requares 'ggplot2' to work. Please install it.")
 
-  if (dim(object)[1] < 3) {
+  if (dim(x)[1] < 3) {
     stop("Cannot plot a graph between only 2 documents.", call. = FALSE)
   }
 
-  results_graph <- object %>%
-    as_tbl_graph() %E>%
-    filter(!is.na(weight),
-           weight >= weight_range[1],
-           weight <= weight_range[2])
+  `%>%` <- tidygraph::`%>%`
+  `%E>%` <- tidygraph::`%E>%`
+  `%N>%` <- tidygraph::`%N>%`
+
+  results_graph <- x %>%
+    tidygraph::as_tbl_graph() %E>%
+    tidygraph::filter(!is.na(.data$weight),
+                      weight >= weight_range[1],
+                      weight <= weight_range[2])
 
   if (remove_lonely) {
     results_graph <- results_graph %E>%
-      filter(from != to) %N>%
-      filter(1:n() %in% c(.E()$from,.E()$to))
+      tidygraph::filter(from != to) %N>%
+      tidygraph::filter(
+        1:tidygraph::n() %in%
+          c(tidygraph::.E()$from, tidygraph::.E()$to)
+      )
   }
 
-  if (nrow(as_tibble(activate(results_graph,nodes))) == 0 |
-      nrow(as_tibble(activate(results_graph,edges))) == 0) {
-    stop("Cannot plot a graph without nodes/edges. Try changing 'weight_range'.", call. = FALSE)
+  if (nrow(tidygraph::as_tibble(tidygraph::activate(results_graph, nodes))) == 0 |
+      nrow(tidygraph::as_tibble(tidygraph::activate(results_graph, edges))) == 0) {
+    stop("Cannot plot a graph without nodes/edges. Try changing 'weight_range'.",
+         call. = FALSE)
   }
 
-  ggraph(results_graph, ...) +
-    geom_edge_fan(aes(label = paste0(100 * round(weight, 2 + digits), "%")),
-                  angle_calc = 'along',
-                  label_dodge = unit(2.5, 'mm')) +
-    geom_node_label(aes(label = name))
+  ggraph::ggraph(results_graph, ...) +
+    ggraph::geom_edge_fan(
+      ggplot2::aes(label = paste0(100 * round(weight, 2 + digits), "%")),
+      angle_calc = 'along',
+      label_dodge = grid::unit(2.5, 'mm')
+    ) +
+    ggraph::geom_node_label(ggplot2::aes(label = name))
 }
 
 #' @export
 #' @rdname plot.chtrs
 graph_em <- plot.chtrs
 
-#' plot histogram of similarity scores
-#'
-#' @author Mattan S. Ben-Shachar
-#' @param object output of \code{catch_em()}.
-#' @param ... passed to \code{hist} or \code{geom_histogram}.
-#'
+
 #' @export
-hist.chtrs <- function(object,...) {
-  if (require(ggplot2)) {
-    ggplot() +
-      geom_histogram(aes(x = as.vector(object)), ...) +
-      labs(main = 'Histogram of similarity scores',
-           x = 'Similarity')
+#' @rdname plot.chtrs
+hist.chtrs <- function(x, ...) {
+  if (requireNamespace("ggplot2")) {
+    ggplot2::ggplot() +
+      ggplot2::geom_histogram(ggplot2::aes(x = as.vector(x)), ...) +
+      ggplot2::labs(main = 'Histogram of similarity scores',
+                    x = 'Similarity')
   } else {
-    hist(as.vector(object),
+    hist(as.vector(x),
          main = 'Histogram of similarity scores',
          xlab = 'Similarity',
          ...)

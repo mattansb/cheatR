@@ -4,12 +4,15 @@
 \alias{summary.chtrs}
 \title{Summarise Cheatrs}
 \usage{
-\method{summary}{chtrs}(object, bad_files = FALSE)
+\method{summary}{chtrs}(object, bad_files = FALSE, ...)
 }
 \arguments{
-\item{bad_files}{logical. Instead of the result matrix, should return instead the list of bad files (that did not compare / load)? default \code{FALSE}}
+\item{object}{output of \code{\link[=catch_em]{catch_em()}}.}
 
-\item{x}{output of \code{catch_em()}.}
+\item{bad_files}{logical. Instead of the result matrix, should return instead
+the list of bad files (that did not compare / load)? Defaults to \code{FALSE}.}
+
+\item{...}{Not used.}
 }
 \description{
 Summarise Cheatrs

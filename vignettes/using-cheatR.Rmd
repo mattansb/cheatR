@@ -12,7 +12,8 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  fig.path = "man/figures/"
 )
 ```
 
@@ -21,7 +22,7 @@ knitr::opts_chunk$set(
 Create a list of files:
 
 ```{r}
-my_files <- list.files(path = '../doc', pattern = '.doc', full.names = T)
+my_files <- list.files(path = '../man/files/', pattern = '.doc', full.names = TRUE)
 my_files
 ```
 The first 3 documents are different drafts of the same paper, so we would expect them to be similar to each other. The last document is a draft of a different paper, so it should be dissimilar to the first 3. **All files are about 45K words long.**
@@ -37,13 +38,13 @@ The only function, `catch_em`, takes the following input arguments:
 ```{r}
 library(cheatR)
 results <- catch_em(flist = my_files,
-                    n_grams = 10, time_lim = 1) # defults
+                    n_grams = 10, time_lim = 1) # defaults
 ```
 
 The resulting list contains a matrix with the similarity values between each pair of documents:
 
 ```{r}
-knitr::kable(results)
+results
 ```
 
 You can also plot the relational graph if you'd like to get a more clear picture of who copied from who.

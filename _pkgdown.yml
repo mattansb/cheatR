@@ -1,0 +1,12 @@
+reference:
+- title: "Main Functions"
+  contents:
+  - catch_em
+  - catch_em_app
+  - compare_txt
+
+- title: "Plot and Summary"
+  contents:
+  - plot.chtrs
+  - summary.chtrs
+

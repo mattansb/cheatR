@@ -7,19 +7,16 @@
 catch_em(flist, n_grams = 10, time_lim = 1L)
 }
 \arguments{
-\item{flist}{a list of documents (\code{.doc}/\code{.docx}/\code{.pdf}). A full/relative path must be provided.}
+\item{flist}{a list of documents (\code{.doc}/\code{.docx}/\code{.pdf}). A full/relative
+path must be provided.}
 
 \item{n_grams}{see \code{\link{ngram}} package.}
 
-\item{time_lim}{max time in seconds for each comparison. Defult is 1 second, had no problem comparing documents with 50K words.}
-
-\item{diag}{What value should the diagonal (the score between an item an itself) take.}
+\item{time_lim}{max time in seconds for each comparison. Defult is 1 second,
+had no problem comparing documents with 50K words.}
 }
 \value{
-\item{results}{A correlation-like matrix with each cell indicating the match (0-1) between two of the documents.} \item{bad_files}{\itemize{
- \item{bad_read}{ vector of documents that could not be read.}
- \item{bad_ngrams}{ matrix of pair-wise comparisons that could not be compared.}
-}}
+A correlation matrix of class \code{chtrs} with each cell indicating the match (0-1) between two of the documents.
 }
 \description{
 Match cheaters

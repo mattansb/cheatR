@@ -2,6 +2,10 @@
 
 This doc details user-facing changes only.
 
+## Version 1.2.1
+
+- `pkgdown` site
+
 ## Version 1.2.0
 
 ### Breaking Changes

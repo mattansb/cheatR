@@ -3,7 +3,10 @@ output: github_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, fig.path = "doc/")
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.path = "man/figures/"
+)
 options(knitr.kable.NA = '', digits = 3)
 library(ggplot2)
 theme_set(theme_void())
@@ -11,12 +14,14 @@ theme_set(theme_void())
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cheatR: Catch 'em baddies <img src="doc\cheatRball.png" align="right" height="345" width="300"/>
+# cheatR: Catch 'em baddies <img src="man\figures\cheatRball.png" align="right" height="345" width="300"/>
 
 This is a mini package to help you find cheaters by comparing hand-ins!  
 ([Read more](https://shouldbewriting.netlify.com/posts/2018-07-29-cheatr/) about the circumstances that brought about the development of this package.)
 
 ## Download and Install
+
+[![CRAN](http://www.r-pkg.org/badges/version/cheatR)](https://cran.r-project.org/package=cheatR)
 
 You can install `cheatR` from [github](https://github.com/mattansb/cheatR) with:
 
@@ -40,7 +45,7 @@ The accompanying `Shiny` app can be found on [shinyapps.io](https://almogsi.shin
 cheatR::catch_em_app()
 ```
 
-<img src="doc\shiny_app.PNG" align="center"/>
+<img src="man\figures\shiny_app.PNG" align="center"/>
 
 ## Limitations?
   

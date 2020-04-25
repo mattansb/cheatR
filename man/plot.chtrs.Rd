@@ -3,23 +3,30 @@
 \name{plot.chtrs}
 \alias{plot.chtrs}
 \alias{graph_em}
-\title{Plot Cheatrs}
+\alias{hist.chtrs}
+\title{Plot cheatrs / histogram of similarity scores}
 \usage{
-\method{plot}{chtrs}(object, weight_range = c(0.4, 1), remove_lonely = TRUE, ...)
+\method{plot}{chtrs}(x, weight_range = c(0.4, 1), remove_lonely = TRUE, digits = 0, ...)
 
-graph_em(object, weight_range = c(0.4, 1), remove_lonely = TRUE, ...)
+graph_em(x, weight_range = c(0.4, 1), remove_lonely = TRUE, digits = 0, ...)
+
+\method{hist}{chtrs}(x, ...)
 }
 \arguments{
-\item{object}{output of \code{catch_em()}.}
+\item{x}{output of \code{\link[=catch_em]{catch_em()}}.}
 
 \item{weight_range}{range of edge values to plot}
 
-\item{remove_lonely}{should lonely nodes (with no edges) be removed from the graph?}
+\item{remove_lonely}{should lonely nodes (with no edges) be removed from the
+graph?}
 
-\item{...}{passed to \code{ggraph}.}
+\item{digits}{Number of digits to round the percentage to.}
+
+\item{...}{passed to \code{\link[ggraph:ggraph]{ggraph::ggraph()}}, \link[ggplot2:geom_histogram]{ggplot2::geom_histogram} or
+\code{\link[=hist]{hist()}}.}
 }
 \description{
-Plot Cheatrs
+\code{plot} requires \code{ggraph} and \code{ggplot2} to work.
 }
 \author{
 Mattan S. Ben-Shachar
