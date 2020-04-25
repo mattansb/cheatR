@@ -83,7 +83,7 @@
   <div class="contents col-md-9">
 <div id="cheatr-catch-em-baddies-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#cheatr-catch-em-baddies-" class="anchor"></a>cheatR: Catch ’em baddies <img src="man%5Cfigures%5CcheatRball.png" align="right" height="345" width="300">
+<a href="#cheatr-catch-em-baddies-" class="anchor"></a>cheatR: Catch ’em baddies <img src="reference/figures/cheatRball.png" align="right" height="345" width="300">
 </h1></div>
 <p>This is a mini package to help you find cheaters by comparing hand-ins!<br>
 (<a href="https://shouldbewriting.netlify.com/posts/2018-07-29-cheatr/">Read more</a> about the circumstances that brought about the development of this package.)</p>
@@ -105,8 +105,8 @@
 <p>Create a list of files:</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="no">my_files</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span>(<span class="kw">path</span> <span class="kw">=</span> <span class="st">'../man/files/'</span>, <span class="kw">pattern</span> <span class="kw">=</span> <span class="st">'.doc'</span>, <span class="kw">full.names</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="no">my_files</span>
-<span class="co">#&gt; [1] "../man/files/paper1 (1).docx" "../man/files/paper1 (2).docx"</span>
-<span class="co">#&gt; [3] "../man/files/paper1 (3).docx" "../man/files/paper2 (1).docx"</span></pre></div>
+<span class="co">#&gt; [1] "../man/files/paper1_copy1.docx" "../man/files/paper1_copy2.docx"</span>
+<span class="co">#&gt; [3] "../man/files/paper1_copy3.docx" "../man/files/paper2_copy1.docx"</span></pre></div>
 <p>The first 3 documents are different drafts of the same paper, so we would expect them to be similar to each other. The last document is a draft of a different paper, so it should be dissimilar to the first 3. <strong>All files are about 45K words long.</strong></p>
 <p>Now we can use <code>cheatR</code> to find duplicates.</p>
 <p>The only function, <code>catch_em</code>, takes the following input arguments:</p>
@@ -128,11 +128,16 @@
 <span class="co">#&gt; Busted!</span></pre></div>
 <p>The resulting list contains a matrix with the similarity values between each pair of documents:</p>
 <div class="sourceCode" id="cb4"><pre class="r"><span class="no">results</span>
-<span class="co">#&gt;                 paper1 (1).docx paper1 (2).docx paper1 (3).docx paper2 (1).docx</span>
-<span class="co">#&gt; paper1 (1).docx            100%                                                </span>
-<span class="co">#&gt; paper1 (2).docx             87%            100%                                </span>
-<span class="co">#&gt; paper1 (3).docx             90%             88%            100%                </span>
-<span class="co">#&gt; paper2 (1).docx              0%              0%              0%            100%</span>
+<span class="co">#&gt;                   paper1_copy1.docx paper1_copy2.docx paper1_copy3.docx</span>
+<span class="co">#&gt; paper1_copy1.docx              100%                                    </span>
+<span class="co">#&gt; paper1_copy2.docx               87%              100%                  </span>
+<span class="co">#&gt; paper1_copy3.docx               90%               88%              100%</span>
+<span class="co">#&gt; paper2_copy1.docx                0%                0%                0%</span>
+<span class="co">#&gt;                   paper2_copy1.docx</span>
+<span class="co">#&gt; paper1_copy1.docx                  </span>
+<span class="co">#&gt; paper1_copy2.docx                  </span>
+<span class="co">#&gt; paper1_copy3.docx                  </span>
+<span class="co">#&gt; paper2_copy1.docx              100%</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; All files read successfully.</span>
 <span class="co">#&gt; All files compared successfully.</span></pre></div>
@@ -141,14 +146,14 @@
 <span class="co">#&gt; Loading required namespace: tidygraph</span>
 <span class="co">#&gt; Loading required namespace: ggraph</span>
 <span class="co">#&gt; Using `stress` as default layout</span></pre></div>
-<p><img src="reference/figures/cheater_graph-1.png"><!-- --></p>
+<p><img src="/man/figures/cheater_graph-1.png"><!-- --></p>
 </div>
 <div id="shiny-app" class="section level3">
 <h3 class="hasAnchor">
 <a href="#shiny-app" class="anchor"></a>Shiny app!</h3>
 <p>The accompanying <code>Shiny</code> app can be found on <a href="https://almogsi.shinyapps.io/cheatR/">shinyapps.io</a>, but can also be run locally with:</p>
 <div class="sourceCode" id="cb6"><pre class="r"><span class="kw pkg">cheatR</span><span class="kw ns">::</span><span class="fu"><a href="reference/catch_em_app.html">catch_em_app</a></span>()</pre></div>
-<p><img src="man%5Cfigures%5Cshiny_app.PNG" align="center"></p>
+<p><img src="reference/figures/shiny_app.PNG" align="center"></p>
 </div>
 </div>
 <div id="limitations" class="section level2">

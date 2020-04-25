@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cheatR: Catch ’em baddies <img src="man\figures\cheatRball.png" align="right" height="345" width="300"/>
+# cheatR: Catch ’em baddies <img src="man/figures/cheatRball.png" align="right" height="345" width="300"/>
 
 This is a mini package to help you find cheaters by comparing
 hand-ins\!  
@@ -33,8 +33,8 @@ Create a list of files:
 ``` r
 my_files <- list.files(path = '../man/files/', pattern = '.doc', full.names = TRUE)
 my_files
-#> [1] "../man/files/paper1 (1).docx" "../man/files/paper1 (2).docx"
-#> [3] "../man/files/paper1 (3).docx" "../man/files/paper2 (1).docx"
+#> [1] "../man/files/paper1_copy1.docx" "../man/files/paper1_copy2.docx"
+#> [3] "../man/files/paper1_copy3.docx" "../man/files/paper2_copy1.docx"
 ```
 
 The first 3 documents are different drafts of the same paper, so we
@@ -72,11 +72,16 @@ each pair of documents:
 
 ``` r
 results
-#>                 paper1 (1).docx paper1 (2).docx paper1 (3).docx paper2 (1).docx
-#> paper1 (1).docx            100%                                                
-#> paper1 (2).docx             87%            100%                                
-#> paper1 (3).docx             90%             88%            100%                
-#> paper2 (1).docx              0%              0%              0%            100%
+#>                   paper1_copy1.docx paper1_copy2.docx paper1_copy3.docx
+#> paper1_copy1.docx              100%                                    
+#> paper1_copy2.docx               87%              100%                  
+#> paper1_copy3.docx               90%               88%              100%
+#> paper2_copy1.docx                0%                0%                0%
+#>                   paper2_copy1.docx
+#> paper1_copy1.docx                  
+#> paper1_copy2.docx                  
+#> paper1_copy3.docx                  
+#> paper2_copy1.docx              100%
 #> 
 #> All files read successfully.
 #> All files compared successfully.
@@ -92,7 +97,7 @@ plot(results, weight_range = c(0.7, 1), remove_lonely = FALSE)
 #> Using `stress` as default layout
 ```
 
-![](man/figures/cheater_graph-1.png)<!-- -->
+![](/man/figures/cheater_graph-1.png)<!-- -->
 
 ### Shiny app\!
 
@@ -104,7 +109,7 @@ run locally with:
 cheatR::catch_em_app()
 ```
 
-<img src="man\figures\shiny_app.PNG" align="center"/>
+<img src="man/figures/shiny_app.PNG" align="center"/>
 
 ## Limitations?
 
