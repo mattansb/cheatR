@@ -1,6 +1,6 @@
 Package: cheatR
 Type: Package
-Title: Catch cheaters!
+Title: Catch Cheaters!
 Version: 1.2.1
 Authors@R: c(
   person("Mattan S.", 

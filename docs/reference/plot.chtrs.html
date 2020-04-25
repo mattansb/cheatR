@@ -135,8 +135,6 @@
     <pre class="usage"><span class='co'># S3 method for chtrs</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>weight_range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.4</span>, <span class='fl'>1</span>), <span class='kw'>remove_lonely</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
 
-<span class='fu'>graph_em</span>(<span class='no'>x</span>, <span class='kw'>weight_range</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.4</span>, <span class='fl'>1</span>), <span class='kw'>remove_lonely</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='no'>...</span>)
-
 <span class='co'># S3 method for chtrs</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
@@ -153,8 +151,8 @@
     </tr>
     <tr>
       <th>remove_lonely</th>
-      <td><p>should lonely nodes (with no edges) be removed from the
-graph?</p></td>
+      <td><p>should lonely nodes (not connected to any edges) be
+removed from the graph?</p></td>
     </tr>
     <tr>
       <th>digits</th>
@@ -162,8 +160,7 @@ graph?</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>passed to <code><a href='https://ggraph.data-imaginist.com/reference/ggraph.html'>ggraph::ggraph()</a></code>, <a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>ggplot2::geom_histogram</a> or
-<code><a href='https://rdrr.io/r/graphics/hist.html'>hist()</a></code>.</p></td>
+      <td><p>passed to <code><a href='https://ggraph.data-imaginist.com/reference/ggraph.html'>ggraph::ggraph()</a></code> or <a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>ggplot2::geom_histogram</a>.</p></td>
     </tr>
     </table>
 

@@ -4,8 +4,8 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
-  echo = TRUE,
-  fig.path = "/man/figures/"
+  echo = TRUE
+  , fig.path = "/man/figures/"
 )
 options(knitr.kable.NA = '', digits = 3)
 library(ggplot2)
@@ -22,28 +22,27 @@ This is a mini package to help you find cheaters by comparing hand-ins!
 ## Download and Install
 
 [![CRAN](http://www.r-pkg.org/badges/version/cheatR)](https://cran.r-project.org/package=cheatR)
+[![downloads](http://cranlogs.r-pkg.org/badges/cheatR)](https://cran.r-project.org/package=cheatR)
 
-You can install `cheatR` from [github](https://github.com/mattansb/cheatR) with:
+You can install `cheatR` with:
 
 ```R
-# install.packages("devtools")
-devtools::install_github("mattansb/cheatR")
+install.packages("cheatR")
 ```
 
-## Example usage
-
-<!-- generated from the vignette. Please see that file -->
-
-```{r child = 'vignettes/using-cheatR.Rmd'}
+Or get the dev version from [github](https://github.com/mattansb/cheatR):
+```
+# install.packages("remotes")
+remotes::install_github("mattansb/cheatR")
 ```
 
-### Shiny app!
-
-The accompanying `Shiny` app can be found on [shinyapps.io](https://almogsi.shinyapps.io/cheatR/), but can also be run locally with:
+See the [*using `cheatR`*](https://mattansb.github.io/cheatR/articles/using-cheatR.html) vignette, or use the accompanying `Shiny` app that can either be run locally 
 
 ```R
 cheatR::catch_em_app()
 ```
+
+Or can be found on [shinyapps.io](https://almogsi.shinyapps.io/cheatR/)!
 
 <img src="man/figures/shiny_app.PNG" align="center"/>
 

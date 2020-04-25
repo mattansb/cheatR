@@ -58,10 +58,9 @@ summary.chtrs <- function(object, bad_files = FALSE, ...) {
 #'
 #' @param x output of [catch_em()].
 #' @param weight_range range of edge values to plot
-#' @param ... passed to [ggraph::ggraph()], [ggplot2::geom_histogram] or
-#'   [hist()].
-#' @param remove_lonely should lonely nodes (with no edges) be removed from the
-#'   graph?
+#' @param ... passed to [ggraph::ggraph()] or [ggplot2::geom_histogram].
+#' @param remove_lonely should lonely nodes (not connected to any edges) be
+#'   removed from the graph?
 #' @param digits Number of digits to round the percentage to.
 #'
 #' @export
@@ -69,6 +68,9 @@ plot.chtrs <- function(x,
                        weight_range = c(.4,1),
                        remove_lonely = TRUE,
                        digits = 0, ...){
+  # dumb workaround
+  .data <- edges <- nodes <- NULL
+
   if(!requireNamespace("tidygraph"))
     stop("This function requares 'tidygraph' to work. Please install it.")
   if (!requireNamespace("ggraph"))
@@ -87,12 +89,12 @@ plot.chtrs <- function(x,
   results_graph <- x %>%
     tidygraph::as_tbl_graph() %E>%
     tidygraph::filter(!is.na(.data$weight),
-                      weight >= weight_range[1],
-                      weight <= weight_range[2])
+                      .data$weight >= weight_range[1],
+                      .data$weight <= weight_range[2])
 
   if (remove_lonely) {
     results_graph <- results_graph %E>%
-      tidygraph::filter(from != to) %N>%
+      tidygraph::filter(.data$from != .data$to) %N>%
       tidygraph::filter(
         1:tidygraph::n() %in%
           c(tidygraph::.E()$from, tidygraph::.E()$to)
@@ -107,30 +109,24 @@ plot.chtrs <- function(x,
 
   ggraph::ggraph(results_graph, ...) +
     ggraph::geom_edge_fan(
-      ggplot2::aes(label = paste0(100 * round(weight, 2 + digits), "%")),
+      ggplot2::aes(label = paste0(100 * round(.data$weight, 2 + digits), "%")),
       angle_calc = 'along',
       label_dodge = grid::unit(2.5, 'mm')
     ) +
-    ggraph::geom_node_label(ggplot2::aes(label = name))
+    ggraph::geom_node_label(ggplot2::aes(label = .data$name))
 }
-
-#' @export
-#' @rdname plot.chtrs
-graph_em <- plot.chtrs
 
 
 #' @export
 #' @rdname plot.chtrs
 hist.chtrs <- function(x, ...) {
-  if (requireNamespace("ggplot2")) {
-    ggplot2::ggplot() +
-      ggplot2::geom_histogram(ggplot2::aes(x = as.vector(x)), ...) +
-      ggplot2::labs(main = 'Histogram of similarity scores',
-                    x = 'Similarity')
-  } else {
-    hist(as.vector(x),
-         main = 'Histogram of similarity scores',
-         xlab = 'Similarity',
-         ...)
-  }
+  if (!requireNamespace("ggplot2"))
+    stop("This function requares 'ggplot2' to work. Please install it.")
+
+  x <- x[lower.tri(x)]
+
+  ggplot2::ggplot() +
+    ggplot2::geom_histogram(ggplot2::aes(x = x), ...) +
+    ggplot2::labs(main = 'Histogram of similarity scores',
+                  x = 'Similarity')
 }

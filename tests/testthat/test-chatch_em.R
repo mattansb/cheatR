@@ -23,3 +23,4 @@ test_that("chtrs", {
 
 # plot(results, remove_lonely = F)
 # summary(results)
+# hist(results)

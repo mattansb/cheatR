@@ -2,13 +2,10 @@
 % Please edit documentation in R/methods.R
 \name{plot.chtrs}
 \alias{plot.chtrs}
-\alias{graph_em}
 \alias{hist.chtrs}
 \title{Plot cheatrs / histogram of similarity scores}
 \usage{
 \method{plot}{chtrs}(x, weight_range = c(0.4, 1), remove_lonely = TRUE, digits = 0, ...)
-
-graph_em(x, weight_range = c(0.4, 1), remove_lonely = TRUE, digits = 0, ...)
 
 \method{hist}{chtrs}(x, ...)
 }
@@ -17,13 +14,12 @@ graph_em(x, weight_range = c(0.4, 1), remove_lonely = TRUE, digits = 0, ...)
 
 \item{weight_range}{range of edge values to plot}
 
-\item{remove_lonely}{should lonely nodes (with no edges) be removed from the
-graph?}
+\item{remove_lonely}{should lonely nodes (not connected to any edges) be
+removed from the graph?}
 
 \item{digits}{Number of digits to round the percentage to.}
 
-\item{...}{passed to \code{\link[ggraph:ggraph]{ggraph::ggraph()}}, \link[ggplot2:geom_histogram]{ggplot2::geom_histogram} or
-\code{\link[=hist]{hist()}}.}
+\item{...}{passed to \code{\link[ggraph:ggraph]{ggraph::ggraph()}} or \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}.}
 }
 \description{
 \code{plot} requires \code{ggraph} and \code{ggplot2} to work.

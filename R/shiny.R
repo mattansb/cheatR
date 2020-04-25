@@ -114,7 +114,7 @@ server_gce <- function(input, output) {
     if (is.na(catch_results()[1]))
       return(ggplot2::ggplot() + ggplot2::theme_void())
 
-    graph_em(
+    plot.chtrs(
       catch_results(),
       weight_range = input$weight_range,
       remove_lonely = input$lonely
