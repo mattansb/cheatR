@@ -1,6 +1,7 @@
 Package: cheatR
 Type: Package
-Title: Catch Cheaters!
+Title: Catch Cheaters
+Description: A set of functions to compare texts for similarity, and plot a graph of similarities among the compared texts. These functions were originally developed for detection of overlap in course hand-in.
 Version: 1.2.1
 Authors@R: c(
   person("Mattan S.", 
@@ -15,7 +16,6 @@ Authors@R: c(
 Maintainer: Mattan S. Ben-Shachar <matanshm@post.bgu.ac.il>
 URL: https://mattansb.github.io/cheatR
 BugReports: https://github.com/mattansb/cheatR/issues
-Description: Compare documents for how similar they are.
 Depends: R (>= 3.6.0)
 Imports: textreadr, ngram, purrr, utils, R.utils 
 Suggests: 
