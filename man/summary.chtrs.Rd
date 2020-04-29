@@ -14,6 +14,9 @@ the list of bad files (that did not compare / load)? Defaults to \code{FALSE}.}
 
 \item{...}{Not used.}
 }
+\value{
+The input \code{chtrs} matrix, or a list of bad files (when \code{bad_files = TRUE}).
+}
 \description{
 Summarise Cheatrs
 }

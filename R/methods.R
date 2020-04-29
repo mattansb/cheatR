@@ -38,6 +38,8 @@ print.chtrs <- function(x, digits = 0, ...) {
 #'   the list of bad files (that did not compare / load)? Defaults to `FALSE`.
 #' @param ... Not used.
 #'
+#' @return The input `chtrs` matrix, or a list of bad files (when `bad_files = TRUE`).
+#'
 #' @export
 summary.chtrs <- function(object, bad_files = FALSE, ...) {
   if (bad_files) {
@@ -62,6 +64,8 @@ summary.chtrs <- function(object, bad_files = FALSE, ...) {
 #' @param remove_lonely should lonely nodes (not connected to any edges) be
 #'   removed from the graph?
 #' @param digits Number of digits to round the percentage to.
+#'
+#' @return A `ggplot2` plot.
 #'
 #' @export
 plot.chtrs <- function(x,

@@ -21,6 +21,9 @@ removed from the graph?}
 
 \item{...}{passed to \code{\link[ggraph:ggraph]{ggraph::ggraph()}} or \link[ggplot2:geom_histogram]{ggplot2::geom_histogram}.}
 }
+\value{
+A \code{ggplot2} plot.
+}
 \description{
 \code{plot} requires \code{ggraph} and \code{ggplot2} to work.
 }

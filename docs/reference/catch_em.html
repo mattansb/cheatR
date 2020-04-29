@@ -132,7 +132,7 @@
     <p>Match cheaters</p>
     </div>
 
-    <pre class="usage"><span class='fu'>catch_em</span>(<span class='no'>flist</span>, <span class='kw'>n_grams</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>time_lim</span> <span class='kw'>=</span> <span class='fl'>1L</span>)</pre>
+    <pre class="usage"><span class='fu'>catch_em</span>(<span class='no'>flist</span>, <span class='kw'>n_grams</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>time_lim</span> <span class='kw'>=</span> <span class='fl'>1L</span>, <span class='kw'>progress_bar</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,6 +150,10 @@ path must be provided.</p></td>
       <th>time_lim</th>
       <td><p>max time in seconds for each comparison. Defult is 1 second,
 had no problem comparing documents with 50K words.</p></td>
+    </tr>
+    <tr>
+      <th>progress_bar</th>
+      <td><p>Should a progress bar be printed to the console?</p></td>
     </tr>
     </table>
 
