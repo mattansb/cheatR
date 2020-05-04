@@ -20,6 +20,16 @@ The input \code{chtrs} matrix, or a list of bad files (when \code{bad_files = TR
 \description{
 Summarise Cheatrs
 }
+\examples{
+
+if (interactive()) {
+  files <- choose.files()
+  res <- catch_em(files)
+
+  summary(res, bad_files = TRUE)
+}
+
+}
 \author{
 Mattan S. Ben-Shachar
 }

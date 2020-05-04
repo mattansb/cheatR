@@ -23,6 +23,13 @@ A correlation matrix of class \code{chtrs} with each cell indicating the match (
 \description{
 Match cheaters
 }
+\examples{
+if (interactive()) {
+  files <- choose.files()
+  catch_em(files)
+}
+
+}
 \author{
 Mattan S. Ben-Shachar
 }

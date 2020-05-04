@@ -8,6 +8,12 @@
 #'
 #' @return A `shiny` app object.
 #'
+#' @examples
+#'
+#' if (interactive()) {
+#'   catch_em_app()
+#' }
+#'
 #' @importFrom utils packageVersion
 #' @export
 catch_em_app <- function(...) {

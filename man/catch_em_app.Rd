@@ -15,6 +15,13 @@ A \code{shiny} app object.
 \description{
 Run \code{catch_em()} interactively.
 }
+\examples{
+
+if (interactive()) {
+  catch_em_app()
+}
+
+}
 \author{
 Almog Simchon
 }

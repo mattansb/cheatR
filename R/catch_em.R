@@ -8,8 +8,13 @@
 #'   had no problem comparing documents with 50K words.
 #' @param progress_bar Should a progress bar be printed to the console?
 #'
-#'
 #' @return A correlation matrix of class `chtrs` with each cell indicating the match (0-1) between two of the documents.
+#'
+#' @examples
+#' if (interactive()) {
+#'   files <- choose.files()
+#'   catch_em(files)
+#' }
 #'
 #' @import purrr
 #' @importFrom utils txtProgressBar
@@ -84,6 +89,11 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L, progress_bar = TRUE){
 #' @param across How should the percentage of overlap be computed?
 #'
 #' @return The percent (0-1) of overlap between the texts
+#'
+#' @examples
+#' text1 <- "My horse is large and white, and I ride it every day."
+#' text2 <- "My mule is large and brown, and I ride it most days."
+#' compare_txt(text1, text2, n_grams = 3)
 #'
 #' @import purrr
 #' @importFrom ngram ngram
