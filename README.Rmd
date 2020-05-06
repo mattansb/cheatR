@@ -26,19 +26,20 @@ This is a mini package to help you find cheaters by comparing hand-ins!
 
 You can install `cheatR` with:
 
-```R
+```{r, eval=FALSE}
 install.packages("cheatR")
 ```
 
 Or get the dev version from [github](https://github.com/mattansb/cheatR):
-```
+
+```{r, eval=FALSE}
 # install.packages("remotes")
 remotes::install_github("mattansb/cheatR")
 ```
 
 See the [*using `cheatR`*](https://mattansb.github.io/cheatR/articles/using-cheatR.html) vignette, or use the accompanying `Shiny` app that can either be run locally 
 
-```R
+```{r, eval=FALSE}
 cheatR::catch_em_app()
 ```
 

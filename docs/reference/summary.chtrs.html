@@ -153,7 +153,18 @@ the list of bad files (that did not compare / load)? Defaults to <code>FALSE</co
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>The input <code>chtrs</code> matrix, or a list of bad files (when <code>bad_files = TRUE</code>).</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+  <span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/choose.files.html'>choose.files</a></span>()
+  <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='catch_em.html'>catch_em</a></span>(<span class='no'>files</span>)
+
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>res</span>, <span class='kw'>bad_files</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

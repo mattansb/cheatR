@@ -38,6 +38,17 @@ print.chtrs <- function(x, digits = 0, ...) {
 #'   the list of bad files (that did not compare / load)? Defaults to `FALSE`.
 #' @param ... Not used.
 #'
+#' @return The input `chtrs` matrix, or a list of bad files (when `bad_files = TRUE`).
+#'
+#' @examples
+#'
+#' if (interactive()) {
+#'   files <- choose.files()
+#'   res <- catch_em(files)
+#'
+#'   summary(res, bad_files = TRUE)
+#' }
+#'
 #' @export
 summary.chtrs <- function(object, bad_files = FALSE, ...) {
   if (bad_files) {
@@ -52,7 +63,7 @@ summary.chtrs <- function(object, bad_files = FALSE, ...) {
 
 #' Plot cheatrs / histogram of similarity scores
 #'
-#' `plot` requires `ggraph` and `ggplot2` to work.
+#' Requires `ggraph` and `ggplot2` to work.
 #'
 #' @author Mattan S. Ben-Shachar
 #'
@@ -62,6 +73,17 @@ summary.chtrs <- function(object, bad_files = FALSE, ...) {
 #' @param remove_lonely should lonely nodes (not connected to any edges) be
 #'   removed from the graph?
 #' @param digits Number of digits to round the percentage to.
+#'
+#' @return A `ggplot2` plot.
+#'
+#' @examples
+#' if (interactive()) {
+#'   files <- choose.files()
+#'   res <- catch_em(files)
+#'
+#'   plot(res)
+#'   hist(res)
+#' }
 #'
 #' @export
 plot.chtrs <- function(x,

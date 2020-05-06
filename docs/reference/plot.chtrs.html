@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Plot cheatrs / histogram of similarity scores — plot.chtrs" />
-<meta property="og:description" content="plot requires ggraph and ggplot2 to work." />
+<meta property="og:description" content="Requires ggraph and ggplot2 to work." />
 
 
 
@@ -129,7 +129,7 @@
     </div>
 
     <div class="ref-description">
-    <p><code>plot</code> requires <code>ggraph</code> and <code>ggplot2</code> to work.</p>
+    <p>Requires <code>ggraph</code> and <code>ggplot2</code> to work.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for chtrs</span>
@@ -164,7 +164,18 @@ removed from the graph?</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A <code>ggplot2</code> plot.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>()) {
+  <span class='no'>files</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/choose.files.html'>choose.files</a></span>()
+  <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='catch_em.html'>catch_em</a></span>(<span class='no'>files</span>)
+
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res</span>)
+  <span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span>(<span class='no'>res</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

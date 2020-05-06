@@ -24,8 +24,10 @@ install.packages("cheatR")
 Or get the dev version from
 [github](https://github.com/mattansb/cheatR):
 
-    # install.packages("remotes")
-    remotes::install_github("mattansb/cheatR")
+``` r
+# install.packages("remotes")
+remotes::install_github("mattansb/cheatR")
+```
 
 See the [*using
 `cheatR`*](https://mattansb.github.io/cheatR/articles/using-cheatR.html)

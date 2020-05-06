@@ -2,12 +2,25 @@
 % Please edit documentation in R/shiny.R
 \name{catch_em_app}
 \alias{catch_em_app}
-\title{Run \code{catch_em} with \code{shiny}}
+\title{Run \code{catch_em()} with \code{shiny}}
 \usage{
-catch_em_app()
+catch_em_app(...)
+}
+\arguments{
+\item{...}{Not used.}
+}
+\value{
+A \code{shiny} app object.
 }
 \description{
-Run \code{catch_em} with \code{shiny}
+Run \code{catch_em()} interactively.
+}
+\examples{
+
+if (interactive()) {
+  catch_em_app()
+}
+
 }
 \author{
 Almog Simchon

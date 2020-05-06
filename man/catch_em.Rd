@@ -4,7 +4,7 @@
 \alias{catch_em}
 \title{Match cheaters}
 \usage{
-catch_em(flist, n_grams = 10, time_lim = 1L)
+catch_em(flist, n_grams = 10, time_lim = 1L, progress_bar = TRUE)
 }
 \arguments{
 \item{flist}{a list of documents (\code{.doc}/\code{.docx}/\code{.pdf}). A full/relative
@@ -14,12 +14,21 @@ path must be provided.}
 
 \item{time_lim}{max time in seconds for each comparison. Defult is 1 second,
 had no problem comparing documents with 50K words.}
+
+\item{progress_bar}{Should a progress bar be printed to the console?}
 }
 \value{
 A correlation matrix of class \code{chtrs} with each cell indicating the match (0-1) between two of the documents.
 }
 \description{
 Match cheaters
+}
+\examples{
+if (interactive()) {
+  files <- choose.files()
+  catch_em(files)
+}
+
 }
 \author{
 Mattan S. Ben-Shachar

@@ -1,10 +1,22 @@
-#' Run \code{catch_em} with \code{shiny}
+#' Run `catch_em()` with `shiny`
+#'
+#' Run `catch_em()` interactively.
+#'
+#' @param ... Not used.
 #'
 #' @author Almog Simchon
 #'
+#' @return A `shiny` app object.
+#'
+#' @examples
+#'
+#' if (interactive()) {
+#'   catch_em_app()
+#' }
+#'
 #' @importFrom utils packageVersion
 #' @export
-catch_em_app <- function() {
+catch_em_app <- function(...) {
   if (!requireNamespace("shiny"))
     stop("This function requares 'shiny' to work. Please install it.")
   if (!requireNamespace("DT"))
@@ -68,7 +80,7 @@ ui_gce <- function() {
       shiny::mainPanel(
         shiny::h3("Results"),
 
-        DT::dataTableOutput("output_doc_matrix"),
+        DT::dataTableOutput("output_doc_matrix", width = "80%"),
 
         shiny::plotOutput('output_graph')
       )
@@ -81,11 +93,16 @@ server_gce <- function(input, output) {
     if (is.null(input$input_doc_list))
       return(NA)
 
-    res <- catch_em(input$input_doc_list$datapath,
-                    n_grams = input$n_grams)
+    res <- suppressMessages(
+      catch_em(input$input_doc_list$datapath,
+               n_grams = input$n_grams,
+               progress_bar = FALSE)
+    )
+
 
     colnames(res) <-
-      rownames(res) <- basename(input$input_doc_list$name)
+      rownames(res) <-
+      basename(input$input_doc_list$name)
     return(res)
   })
 
@@ -111,7 +128,7 @@ server_gce <- function(input, output) {
 
 
   output$output_graph <- shiny::renderPlot({
-    if (is.na(catch_results()[1]))
+    if (is.na(catch_results()[1]) || nrow(catch_results()) < 3)
       return(ggplot2::ggplot() + ggplot2::theme_void())
 
     plot.chtrs(

@@ -19,6 +19,12 @@ The percent (0-1) of overlap between the texts
 \description{
 Match cheaters
 }
+\examples{
+text1 <- "My horse is large and white, and I ride it every day."
+text2 <- "My mule is large and brown, and I ride it most days."
+compare_txt(text1, text2, n_grams = 3)
+
+}
 \author{
 Mattan S. Ben-Shachar
 }
