@@ -15,13 +15,13 @@ print.chtrs <- function(x, digits = 0, ...) {
   attr(x, "bad_ngrams") <- NULL
 
   print(unclass(x), quote = F, right = T)
-  if (bad_read > 0) {
+  if (isTRUE(bad_read > 0)) {
     cat('\n', bad_read, ' files could not be read.')
   } else {
     cat('\nAll files read successfully.')
   }
 
-  if (!is.null(bad_ngrams)) {
+  if (isTRUE(!is.null(bad_ngrams))) {
     cat('\n', bad_read, ' comparisons failed.')
   } else {
     cat('\nAll files compared successfully.')
@@ -51,7 +51,7 @@ print.chtrs <- function(x, digits = 0, ...) {
 #'
 #' @export
 summary.chtrs <- function(object, bad_files = FALSE, ...) {
-  if (bad_files) {
+  if (isTRUE(bad_files)) {
     list(
       bad_read = attr(object, "bad_read"),
       bad_ngrams = attr(object, "bad_ngrams")
@@ -93,14 +93,14 @@ plot.chtrs <- function(x,
   # dumb workaround
   .data <- edges <- nodes <- NULL
 
-  if(!requireNamespace("tidygraph"))
+  if(isTRUE(!requireNamespace("tidygraph")))
     stop("This function requares 'tidygraph' to work. Please install it.")
-  if (!requireNamespace("ggraph"))
+  if (isTRUE(!requireNamespace("ggraph")))
     stop("This function requares 'ggraph' to work. Please install it.")
-  if (!requireNamespace("ggplot2"))
+  if (isTRUE(!requireNamespace("ggplot2")))
     stop("This function requares 'ggplot2' to work. Please install it.")
 
-  if (dim(x)[1] < 3) {
+  if (isTRUE(dim(x)[1] < 3)) {
     stop("Cannot plot a graph between only 2 documents.", call. = FALSE)
   }
 
@@ -114,7 +114,7 @@ plot.chtrs <- function(x,
                       .data$weight >= weight_range[1],
                       .data$weight <= weight_range[2])
 
-  if (remove_lonely) {
+  if (isTRUE(remove_lonely)) {
     results_graph <- results_graph %E>%
       tidygraph::filter(.data$from != .data$to) %N>%
       tidygraph::filter(
@@ -123,8 +123,8 @@ plot.chtrs <- function(x,
       )
   }
 
-  if (nrow(tidygraph::as_tibble(tidygraph::activate(results_graph, nodes))) == 0 |
-      nrow(tidygraph::as_tibble(tidygraph::activate(results_graph, edges))) == 0) {
+  if (isTRUE(nrow(tidygraph::as_tibble(tidygraph::activate(results_graph, nodes))) == 0) ||
+      isTRUE(nrow(tidygraph::as_tibble(tidygraph::activate(results_graph, edges))) == 0)) {
     stop("Cannot plot a graph without nodes/edges. Try changing 'weight_range'.",
          call. = FALSE)
   }
@@ -142,7 +142,7 @@ plot.chtrs <- function(x,
 #' @export
 #' @rdname plot.chtrs
 hist.chtrs <- function(x, ...) {
-  if (!requireNamespace("ggplot2"))
+  if (isTRUE(!requireNamespace("ggplot2")))
     stop("This function requares 'ggplot2' to work. Please install it.")
 
   x <- x[lower.tri(x)]

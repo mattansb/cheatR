@@ -17,11 +17,11 @@
 #' @importFrom utils packageVersion
 #' @export
 catch_em_app <- function(...) {
-  if (!requireNamespace("shiny"))
+  if (isTRUE(!requireNamespace("shiny")))
     stop("This function requares 'shiny' to work. Please install it.")
-  if (!requireNamespace("DT"))
+  if (isTRUE(!requireNamespace("DT")))
     stop("This function requares 'DT' to work. Please install it.")
-  if (!requireNamespace("ggplot2"))
+  if (isTRUE(!requireNamespace("ggplot2")))
     stop("This function requares 'ggplot2' to work. Please install it.")
 
   # Run the application
@@ -90,7 +90,7 @@ ui_gce <- function() {
 
 server_gce <- function(input, output) {
   catch_results <- shiny::reactive({
-    if (is.null(input$input_doc_list))
+    if (isTRUE(is.null(input$input_doc_list)))
       return(NA)
 
     res <- suppressMessages(
@@ -107,14 +107,14 @@ server_gce <- function(input, output) {
   })
 
   output$output_doc_list <- shiny::renderTable({
-    if (is.null(input$input_doc_list))
+    if (isTRUE(is.null(input$input_doc_list)))
       return(data.frame())
 
     data.frame(Document = input$input_doc_list$name)
   })
 
   output$output_doc_matrix <- DT::renderDataTable({
-    if (is.na(catch_results()[1]))
+    if (isTRUE(is.na(catch_results()[1])))
       return(data.frame())
 
     round(catch_results(), 3)
@@ -128,7 +128,7 @@ server_gce <- function(input, output) {
 
 
   output$output_graph <- shiny::renderPlot({
-    if (is.na(catch_results()[1]) || nrow(catch_results()) < 3)
+    if (isTRUE(is.na(catch_results()[1])) || isTRUE(nrow(catch_results()) < 3))
       return(ggplot2::ggplot() + ggplot2::theme_void())
 
     plot.chtrs(

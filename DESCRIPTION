@@ -2,7 +2,7 @@ Package: cheatR
 Type: Package
 Title: Catch Cheaters
 Description: A set of functions to compare texts for similarity, and plot a graph of similarities among the compared texts. These functions were originally developed for detection of overlap in course hand-in.
-Version: 1.2.1
+Version: 1.2.1-1
 Authors@R: c(
   person("Mattan S.", 
 		"Ben-Shachar", 
@@ -32,8 +32,6 @@ Suggests:
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
-
-

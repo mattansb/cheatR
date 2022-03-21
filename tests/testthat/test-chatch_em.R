@@ -6,7 +6,7 @@ test_that("chtrs", {
   library(cheatR)
   my_files <- list.files(path = '../../man/files', pattern = '.doc', full.names = T)
   # my_files <- list.files(path = 'man/files', pattern = '.doc', full.names = T)
-  my_files
+  # my_files
 
   set.seed(140)
   results <- catch_em(flist = my_files,
@@ -19,8 +19,8 @@ test_that("chtrs", {
   testthat::expect_equal(results[lower.tri(results)],
                          c(0.872, 0.901, 0.002, 0.877, 0.002, 0.001),
                          tol = .001)
-})
 
-# plot(results, remove_lonely = F)
-# summary(results)
-# hist(results)
+  # plot(results, remove_lonely = F)
+  # summary(results)
+  # hist(results)
+})
