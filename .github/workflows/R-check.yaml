@@ -30,8 +30,6 @@ jobs:
           # Older still
           - {os: ubuntu-18.04,   r: '4.0.0'}
           - {os: ubuntu-18.04,   r: '3.6.0'}
-          - {os: ubuntu-18.04,   r: '3.5.0'}
-          - {os: ubuntu-18.04,   r: '3.4.0'}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
