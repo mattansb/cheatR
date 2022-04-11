@@ -14,8 +14,8 @@ Authors@R: c(
 		role = c("aut"))
 	)
 Maintainer: Mattan S. Ben-Shachar <matanshm@post.bgu.ac.il>
-URL: https://mattansb.github.io/cheatR
-BugReports: https://github.com/mattansb/cheatR/issues
+URL: https://mattansb.github.io/cheatR/
+BugReports: https://github.com/mattansb/cheatR/issues/
 Depends: R (>= 4.0.0)
 Imports: textreadr, ngram, purrr, utils, R.utils 
 Suggests: 

@@ -17,7 +17,7 @@ theme_set(theme_void())
 # cheatR: Catch 'em baddies <img src="man/figures/cheatRball.png" align="right" height="345" width="300"/>
 
 This is a mini package to help you find cheaters by comparing hand-ins!  
-([Read more](https://shouldbewriting.netlify.com/posts/2018-07-29-cheatr/) about the circumstances that brought about the development of this package.)
+([Read more](https://shouldbewriting.netlify.app/posts/2018-07-29-cheatr/) about the circumstances that brought about the development of this package.)
 
 ## Download and Install
 
