@@ -4,9 +4,9 @@
 # cheatR: Catch ’em baddies <img src="man/figures/cheatRball.png" align="right" height="345" width="300"/>
 
 This is a mini package to help you find cheaters by comparing
-hand-ins\!  
+hand-ins!  
 ([Read
-more](https://shouldbewriting.netlify.com/posts/2018-07-29-cheatr/)
+more](https://shouldbewriting.netlify.app/posts/2018-07-29-cheatr/)
 about the circumstances that brought about the development of this
 package.)
 
@@ -38,19 +38,18 @@ locally
 cheatR::catch_em_app()
 ```
 
-Or can be found on
-[shinyapps.io](https://almogsi.shinyapps.io/cheatR/)\!
+Or can be found on [shinyapps.io](https://almogsi.shinyapps.io/cheatR/)!
 
 <img src="man/figures/shiny_app.PNG" align="center"/>
 
 ## Limitations?
 
-  - As far as we can tell, this should work on any language; we tried
+-   As far as we can tell, this should work on any language; we tried
     both English and Hebrew, with and without setting
     `Sys.setlocale("LC_ALL", "Hebrew")`.  
-  - Best performance was achieved on `R` version \> 3.5.0.
+-   Best performance was achieved on `R` version \> 3.5.0.
 
 ## Authors
 
-  - **Mattan S. Ben-Shachar** \[aut, cre\].
-  - **Almog Simchon** \[aut, cre\].
+-   **Mattan S. Ben-Shachar** \[aut, cre\].
+-   **Almog Simchon** \[aut, cre\].

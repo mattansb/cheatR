@@ -23,7 +23,7 @@
 #' @importFrom textreadr read_document
 #' @export
 catch_em <- function(flist, n_grams = 10, time_lim = 1L, progress_bar = TRUE){
-  if (length(flist) < 2) {
+  if (isTRUE(length(flist) < 2)) {
     stop("Must specify at least 2 files.")
   }
 
@@ -36,7 +36,7 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L, progress_bar = TRUE){
   flist <- flist[!is.na(txt_all)]
   txt_all <- txt_all[!is.na(txt_all)]
 
-  if (length(txt_all)==0) {
+  if (isTRUE(length(txt_all)==0)) {
     stop("Couldn't read any files:\n", paste0(bad_files_to_read, collapse = ",\t"),
          call. = FALSE)
   }
@@ -55,13 +55,13 @@ catch_em <- function(flist, n_grams = 10, time_lim = 1L, progress_bar = TRUE){
   if(isTRUE(progress_bar)) pb <- utils::txtProgressBar(min = 0, max = max(c(length(flist), 1)))
   for (i in seq_along(flist)) {
     for (j in seq_along(flist)) {
-      if (is.na(res[j, i])) {
+      if (isTRUE(is.na(res[j, i]))) {
         results <- R.utils::withTimeout({
           compare_txt(txt_all[i], txt_all[j], n_grams = n_grams)
         },
         timeout = time_lim,
         onTimeout = "silent")
-        if (is.null(results)) {
+        if (isTRUE(is.null(results))) {
           bad_files <- rbind(bad_files,
                              c(flist[i], flist[j]))
         }
@@ -103,7 +103,7 @@ compare_txt <- function(txt1,txt2, n_grams = 10,
                         across = c("both","txt1","txt2")) {
   across <- match.arg(across)
 
-  if (is.null(txt1) | is.null(txt2)) {
+  if (isTRUE(is.null(txt1)) || isTRUE(is.null(txt2))) {
     return(NULL)
   }
 
@@ -117,7 +117,7 @@ compare_txt <- function(txt1,txt2, n_grams = 10,
   temp_phrs <- map(temp_grams, ngram::get.phrasetable)
   temp_phrs <- map(temp_phrs, total_freq)
   XX <- merge(temp_phrs[[1]], temp_phrs[[2]], by = 'ngrams')
-  if (nrow(XX)==0) return(0)
+  if (isTRUE(nrow(XX) == 0)) return(0)
   XX$freq <- 2 * pmin(XX$freq.x, XX$freq.y, na.rm = TRUE)
 
   switch (across,
